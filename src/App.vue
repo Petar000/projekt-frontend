@@ -1,14 +1,16 @@
 <template>
   <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
   </nav>
   <router-view/>
 </template>
 
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  height: 90vh;
+   width: 90vw;
+   margin: 0;
+   padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -27,4 +29,54 @@ nav {
     }
   }
 }
+
+button {
+  padding: 20px 30px;
+  font-size: 16px;
+  background-color: #2DA6E8;
+  color: black;
+  border: none;
+  cursor: pointer;
+}
+
+h1 {
+  font-weight: bold;
+  margin-bottom: 100px;
+}
+
+.stranica-pitanja{
+  position:fixed;
+  height: 100%;
+  width: 100%;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: #34F21A;
+  color: white;
+}
+
+.savjeti{
+  background-color: #34F21A;
+  color: white;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+}
+
+.trainLogo{
+    position: fixed;
+    width: 200px;
+    left: 0px;
+  }
+
+p {
+  font-size: 30px;
+}
 </style>
+
+
