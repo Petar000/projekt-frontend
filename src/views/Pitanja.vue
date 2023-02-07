@@ -72,10 +72,12 @@ document.querySelectorAll('.my-button2').forEach(button => {
   margin-right: 30px;
   margin-top: 20px;
   margin-bottom: 50px;
+  border-radius: 4px;
 }
 .my-button2{
   background-color: #2DA6E8;
   margin:20px 30px;
+  border-radius: 4px;
 }
 .stranica-pitanja{
   background-image: url(../assets/pozadina2.jpg);
@@ -84,6 +86,8 @@ document.querySelectorAll('.my-button2').forEach(button => {
 #dalje {
   position: fixed;
   padding: 30px 40px;
+  border-radius: 8px;
+  font-size: 20px;
   bottom: 30px;
   right: 30px;
 }

@@ -21,6 +21,8 @@ export default {
 
 <style scoped>
   #idipitanja{
+    font-size: 20px;
+    border-radius: 8px;
     position: fixed;
     padding: 30px 40px;
     bottom: 30px;
@@ -38,7 +40,7 @@ export default {
     top: 380px;
   }
   .home-screen {
-  background-image: url(../assets/background.jpg);
+  background-image: url(../assets/background_1.jpg);
   background-size: 100%;
   position: fixed;
   left: 0px;

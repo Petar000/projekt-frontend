@@ -18,6 +18,8 @@
 #pocetak{
         position: fixed;
         padding: 30px 40px;
+        font-size: 20px;
+        border-radius: 8px;
         bottom: 20px;
         right: 20px;
     }
