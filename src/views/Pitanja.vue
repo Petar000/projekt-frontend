@@ -71,6 +71,14 @@ export default {
   methods: {
     tips() {
       this.$router.push({ name: "Savjeti" });
+      document.querySelectorAll(".my-button1").forEach((b) => {
+          b.style.backgroundColor = "#2DA6E8";
+          b.style.color = "black";
+        });
+      document.querySelectorAll(".my-button2").forEach((b) => {
+          b.style.backgroundColor = "#2DA6E8";
+          b.style.color = "black";
+        });
     },
     isanswered() {
       if (this.prviKliknut == true && this.drugiKliknut == true) {
