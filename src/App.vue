@@ -1,15 +1,9 @@
 <template>
-  <nav>
-  </nav>
   <router-view/>
 </template>
 
 <style lang="scss">
 #app {
-  height: 90vh;
-   width: 90vw;
-   margin: 0;
-   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -19,7 +13,6 @@
 
 nav {
   padding: 30px;
-
   a {
     font-weight: bold;
     color: #2c3e50;
@@ -30,9 +23,22 @@ nav {
   }
 }
 
+.trainLogo2{
+  width: 16%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  }
+
+.bg-img2{
+color:white;
+background-image: url(../src/assets/pozadina3.jpg);
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center center;
+}
+
 button {
-  padding: 20px 30px;
-  font-size: 16px;
   background-color: #2DA6E8;
   color: black;
   border: none;
@@ -41,41 +47,10 @@ button {
 
 h1 {
   font-weight: bold;
-  margin-bottom: 100px;
 }
-
-.stranica-pitanja{
-  position:fixed;
-  height: 100%;
-  width: 100%;
-  left: 0px;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  background-color: #34F21A;
-  color: white;
-}
-
-.savjeti{
-  background-color: #34F21A;
-  color: white;
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  left: 0px;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-}
-
-.trainLogo{
-    position: fixed;
-    width: 200px;
-    left: 0px;
-  }
 
 p {
-  font-size: 30px;
+  font-size: 2.8vw;
 }
 </style>
 
