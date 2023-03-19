@@ -1,39 +1,66 @@
 <template>
-  <div v-cloak>
-    <ul v-if="lowerBody">
-      <li v-for="vjezba in lowerBody.vježbe" :key="vjezba.ime">
-        {{ vjezba.ime }} - {{ vjezba.serija }}x{{ vjezba.min_ponavljanja }}-{{
-          vjezba.max_ponavljanja
-        }}@{{ vjezba.rpe }}
-      </li>
-    </ul>
-  </div>
+  <h1>Plan treninga</h1>
+  <h2>Full body A</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Ime vježbe</th>
+        <th>Broj serija</th>
+        <th>Broj ponavljanja</th>
+        <th>RPE</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="(vježba, index) in lowerBody" :key="index">
+        <td>{{ vježba.ime }}</td>
+        <td>{{ vježba.serija }}</td>
+        <td>{{ vježba.min_ponavljanja }} - {{ vježba.max_ponavljanja }}</td>
+        <td>{{ vježba.rpe }}</td>
+      </tr>
+    </tbody>
+  </table>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      lowerBody: null,
+      lowerBody: {},
     };
   },
   mounted() {
-    fetch("http://localhost:3000/lowerbody")
-      .then((response) => response.json())
+    fetch("http://localhost:3000/fullbody1")
+      .then((res) => {
+        return res.json();
+      })
       .then((data) => {
-        console.log("objekt");
         console.log(data);
-        console.log("objekt");
-        alert(data);
         this.lowerBody = data;
         console.log(this.lowerBody);
-      });
+      })
+      .catch((error) => console.log(error));
   },
 };
 </script>
 
 <style scoped>
-[v-cloak] {
-  display: none;
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+h1 {
+  margin-top: 10px;
+  margin-bottom: 15px;
 }
 </style>
