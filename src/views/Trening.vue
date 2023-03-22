@@ -1,6 +1,6 @@
 <template>
 <h1>Plan treninga</h1>
-<h2>Full body A</h2>
+<h2 id = "naslovtr1"></h2>
 <table>
   <thead>
     <tr>
@@ -11,7 +11,26 @@
     </tr>
   </thead>
   <tbody>
-    <tr v-for="(vježba, index) in treningProgram" :key="index">
+    <tr v-for="vježba in treningProgram1" :key="vježba.ime">
+      <td>{{ vježba.ime }}</td>
+      <td>{{ vježba.serija }}</td>
+      <td>{{ vježba.min_ponavljanja }} - {{ vježba.max_ponavljanja }}</td>
+      <td>{{ vježba.rpe }}</td>
+    </tr>
+  </tbody>
+</table>
+<h2 id = "naslovtr2"></h2>
+<table>
+  <thead>
+    <tr>
+      <th>Ime vježbe</th>
+      <th>Broj serija</th>
+      <th>Broj ponavljanja</th>
+      <th>RPE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr v-for="vježba in treningProgram2" :key="vježba.ime">
       <td>{{ vježba.ime }}</td>
       <td>{{ vježba.serija }}</td>
       <td>{{ vježba.min_ponavljanja }} - {{ vježba.max_ponavljanja }}</td>
@@ -27,15 +46,15 @@ import axios from 'axios'
 export default {
 data() {
   return {
-    treningProgram: {},
+    treningProgram1: {}, //prvi koji ce se prikazati
+    treningProgram2: {}, // drugi koji ce se prikazati
     mojiOdgovori: {},
   };
 },
 mounted() {
   axios.get('http://localhost:3000/odgovori')
     .then(response => {
-      const data = JSON.parse(JSON.stringify(response.data));
-      this.mojiOdgovori = data;
+      this.mojiOdgovori = response.data;
       console.log("odgovorii nakon json", this.mojiOdgovori);
     })
     .catch(error => {
@@ -46,17 +65,6 @@ mounted() {
   },
 
 methods: {
-
-dohvati() {
-  axios.get("http://localhost:3000/fullbody1")
-      .then(response => {
-      this.treningProgram = response.data;
-      console.log(this.treningProgram);
-      })
-      .catch(error => {
-        console.log(error);
-  });
-},
 
 async provjeriOdgovore() {
   await new Promise(resolve => {
@@ -69,23 +77,38 @@ async provjeriOdgovore() {
     }, 100);
   });
 
-  if (this.mojiOdgovori[0].drugiOdgovor === "2" || this.mojiOdgovori[0].drugiOdgovor === "3") {
-    console.log("usli smo u if");
+  if (this.mojiOdgovori[0].drugiOdgovor === "2") {
     await this.dohvatiFullBody1();
-  } else if (this.mojiOdgovori[0].drugiOdgovor === "4" && this.mojiOdgovori[0].prviOdgovor === "Podjednako") {
     await this.dohvatiFullBody2();
-  } else if (this.mojiOdgovori[0].drugiOdgovor === "4" && this.mojiOdgovori[0].prviOdgovor === "Trup") {
-    await this.dohvatiUpperBody();
-  } else if (this.mojiOdgovori[0].drugiOdgovor === "4" && this.mojiOdgovori[0].prviOdgovor === "Donji dio") {
+  } else if (this.mojiOdgovori[0].drugiOdgovor ==="3" && this.mojiOdgovori[0].prviOdgovor === "Podjednako") {
+    await this.dohvatiFullBody1();
+    await this.dohvatiFullBody2();
+  } else if (this.mojiOdgovori[0].drugiOdgovor ==="3" && this.mojiOdgovori[0].prviOdgovor === "Trup") {
     await this.dohvatiLowerBody();
+    await this.dohvatiUpperBody();
+  } else if (this.mojiOdgovori[0].drugiOdgovor ==="3" && this.mojiOdgovori[0].prviOdgovor === "Donji dio") {
+    await this.dohvatiLowerBody();
+    await this.dohvatiUpperBody();
+  } else if (this.mojiOdgovori[0].drugiOdgovor === "4" && this.mojiOdgovori[0].prviOdgovor === "Podjednako") {
+    await this.dohvatiLowerBody();
+    await this.dohvatiUpperBody();
+  } else if (this.mojiOdgovori[0].drugiOdgovor === "4" && this.mojiOdgovori[0].prviOdgovor === "Trup") {
+    await this.dohvatiLowerBodyViseGornji();
+    await this.dohvatiUpperBodyViseGornji();
+  } else if (this.mojiOdgovori[0].drugiOdgovor === "4" && this.mojiOdgovori[0].prviOdgovor === "Donji dio") {
+    await this.dohvatiLowerBodyViseDonji();
+    await this.dohvatiUpperBodyViseDonji();
   }
 },
 
 async dohvatiFullBody1() {
 try {
   const response = await axios.get("http://localhost:3000/fullbody1");
-  this.treningProgram = response.data;
-  console.log(this.treningProgram);
+  this.treningProgram1 = response.data;
+  console.log("prije kreiranja naslova", this.treningProgram1);
+  const imetr1 = this.treningProgram1[9].imetreninga;
+  const naslov1 = document.getElementById("naslovtr1")
+  naslov1.innerText = imetr1
 } catch (error) {
   console.log(error);
 }
@@ -93,8 +116,11 @@ try {
 async dohvatiFullBody2() {
 try {
   const response = await axios.get("http://localhost:3000/fullbody2");
-  this.treningProgram = response.data;
+  this.treningProgram2 = response.data;
   console.log(this.treningProgram);
+  const imetr2 = this.treningProgram2[8].imetreninga;
+  const naslov2 = document.getElementById("naslovtr2")
+  naslov2.innerText = imetr2
 } catch (error) {
   console.log(error);
 }
@@ -102,8 +128,11 @@ try {
 async dohvatiLowerBody() {
 try {
   const response = await axios.get("http://localhost:3000/lowerbody");
-  this.treningProgram = response.data;
+  this.treningProgram1 = response.data;
   console.log(this.treningProgram);
+  const imetr1 = this.treningProgram1[5].imetreninga;
+  const naslov1 = document.getElementById("naslovtr1")
+  naslov1.innerText = imetr1
 } catch (error) {
   console.log(error);
 }
@@ -111,8 +140,11 @@ try {
 async dohvatiLowerBodyViseGornji() {
 try {
   const response = await axios.get("http://localhost:3000/lowerbody-visegornji");
-  this.treningProgram = response.data;
+  this.treningProgram1 = response.data;
   console.log(this.treningProgram);
+  const imetr1 = this.treningProgram1[5].imetreninga;
+  const naslov1 = document.getElementById("naslovtr1")
+  naslov1.innerText = imetr1
 } catch (error) {
   console.log(error);
 }
@@ -120,8 +152,11 @@ try {
 async dohvatiLowerBodyViseDonji() {
 try {
   const response = await axios.get("http://localhost:3000/lowerbody-visedonji");
-  this.treningProgram = response.data;
+  this.treningProgram1 = response.data;
   console.log(this.treningProgram);
+  const imetr1 = this.treningProgram1[5].imetreninga;
+  const naslov1 = document.getElementById("naslovtr1")
+  naslov1.innerText = imetr1
 } catch (error) {
   console.log(error);
 }
@@ -129,8 +164,11 @@ try {
 async dohvatiUpperBody() {
 try {
   const response = await axios.get("http://localhost:3000/upperbody");
-  this.treningProgram = response.data;
+  this.treningProgram2 = response.data;
   console.log(this.treningProgram);
+  const imetr2 = this.treningProgram2[7].imetreninga;
+  const naslov2 = document.getElementById("naslovtr2")
+  naslov2.innerText = imetr2
 } catch (error) {
   console.log(error);
 }
@@ -138,8 +176,11 @@ try {
 async dohvatiUpperBodyViseGornji() {
 try {
   const response = await axios.get("http://localhost:3000/upperbody-visegornji");
-  this.treningProgram = response.data;
+  this.treningProgram2 = response.data;
   console.log(this.treningProgram);
+  const imetr2 = this.treningProgram2[7].imetreninga;
+  const naslov2 = document.getElementById("naslovtr2")
+  naslov2.innerText = imetr2
 } catch (error) {
   console.log(error);
 }
@@ -147,8 +188,11 @@ try {
 async dohvatiUpperBodyViseDonji() {
 try {
   const response = await axios.get("http://localhost:3000/upperbody-visedonji");
-  this.treningProgram = response.data;
+  this.treningProgram2 = response.data;
   console.log(this.treningProgram);
+  const imetr2 = this.treningProgram2[7].imetreninga;
+  const naslov2 = document.getElementById("naslovtr2")
+  naslov2.innerText = imetr2
 } catch (error) {
   console.log(error);
 }
