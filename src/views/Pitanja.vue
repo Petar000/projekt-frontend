@@ -36,11 +36,14 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data() {
     return {
       prviKliknut: false,
       drugiKliknut: false,
+      odgovori: {}
     };
   },
 
@@ -54,6 +57,8 @@ export default {
         });
         button.style.backgroundColor = "#001BFF";
         button.style.color = "white";
+
+        this.odgovori.prviOdgovor = button.textContent;
       });
     });
     document.querySelectorAll(".my-button2").forEach((button) => {
@@ -65,10 +70,22 @@ export default {
         });
         button.style.backgroundColor = "#001BFF";
         button.style.color = "white";
+
+        this.odgovori.drugiOdgovor = button.textContent;
       });
     });
   },
   methods: {
+    saveObject() {
+      axios.post('http://localhost:3000/odgovori', this.odgovori)
+        .then(response => {
+          console.log('Objekt spremljen')
+        })
+        .catch(error => {
+          console.error(error)
+        })
+      this.tips()
+    },
     tips() {
       this.$router.push({ name: "Savjeti" });
       document.querySelectorAll(".my-button1").forEach((b) => {
@@ -81,10 +98,11 @@ export default {
         });
     },
     isanswered() {
+      console.log(this.odgovori)
       if (this.prviKliknut == true && this.drugiKliknut == true) {
-        this.tips();
+        this.saveObject();
       }
-    },
+    }
   },
 };
 </script>
