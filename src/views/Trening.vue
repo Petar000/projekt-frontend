@@ -1,6 +1,6 @@
 <template>
 
-  <div class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="navbar navbar-expand-lg navbar-light traka">
     <div class="container-fluid">
       <button
         class="navbar-toggler"
@@ -15,8 +15,9 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
+          <button @click="idiNaHome" id="idihome">Naslovna stranica</button>
           <li class="nav-item">
-            <a class="nav-link active" href="#" @click="pokaziTrening1()">Trening 1</a>
+            <a class="nav-link" href="#" @click="pokaziTrening1()">Trening 1</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#" @click="pokaziTrening2()">Trening 2</a>
@@ -28,11 +29,13 @@
       </div>
     </div>
   </div>
-  <h1 id = "naslovplana"></h1>
+  <div class="container-fluid bg-img vh-90 d-flex align-items-top justify-content-center">
+    <div class="container-fluid home-screen">
   <div class="container">
     <div class="row mt-4">
       <div class="col">
         <div v-if="trening1Kliknut">
+          <h1>{{ imetr1 }}</h1>
           <table>
             <thead>
               <tr>
@@ -65,6 +68,7 @@
           </table>
         </div>
         <div v-if="trening2Kliknut">
+          <h1>{{ imetr2 }}</h1>
         <table>
           <thead>
             <tr>
@@ -99,6 +103,7 @@
     </div>
   </div>
   <div v-if="uputeKliknut">
+    <h1>Upute za trening</h1>
   <p class = "upute-tekst">
     Pauza između svake serije je između 2 i 3.5 minute - nije strogo određena.
     Za svaku vježbu pronaći opterećenje koje će odgovarati zadanom broju
@@ -113,6 +118,8 @@
     seriju ocjenjujemo s RPE 8.
   </p>
   </div>
+  </div>
+  </div>
 </div>
 
 </template>
@@ -125,6 +132,8 @@ export default {
     return {
       treningProgram1: {}, //prvi koji ce se prikazati
       treningProgram2: {}, // drugi koji ce se prikazati
+      imetr1: "",
+      imetr2: "",
       mojiOdgovori: {},
       trening1Kliknut: true,  //u metodi na kraju se postavlja u true ovisno sta se klikne
       trening2Kliknut: false,
@@ -160,32 +169,25 @@ export default {
           }
         }, 100);
       });
-      const prviNaslov = document.getElementById("naslovplana");
 
       const prviOdgovor = this.mojiOdgovori[0].prviOdgovor;
       const drugiOdgovor = this.mojiOdgovori[0].drugiOdgovor;
 
       if (drugiOdgovor === "2") {
-        prviNaslov.innerText = "Treninzi za 2 puta tjedno. Full body A-B";
         await this.dohvatiFullBody1();
         await this.dohvatiFullBody2();
       } else if (drugiOdgovor === "3") {
         if (prviOdgovor === "Podjednako") {
           await this.dohvatiFullBody1();
-          await this.dohvatiFullBody2();
-          prviNaslov.innerText = "Treninzi za 3 puta tjedno. Full body A-B-A";
+          await this.dohvatiFullBody2();;
         } else if (prviOdgovor === "Trup") {
           await this.dohvatiLowerBody();
           await this.dohvatiUpperBody();
-          prviNaslov.innerText = "Treninzi za 3 puta tjedno. Upper-Lower-Upper";
         } else if (prviOdgovor === "Donji dio") {
           await this.dohvatiLowerBody();
           await this.dohvatiUpperBody();
-          prviNaslov.innerText = "Treninzi za 3 puta tjedno. Lower-Upper-Lower";
         }
       } else if (drugiOdgovor === "4") {
-        prviNaslov.innerText =
-          "Treninzi za 4 puta tjedno. Lower-Upper-Lower-Upper";
         if (prviOdgovor === "Podjednako") {
           await this.dohvatiLowerBody();
           await this.dohvatiUpperBody();
@@ -204,9 +206,7 @@ export default {
         const response = await axios.get("http://localhost:3000/fullbody1");
         this.treningProgram1 = response.data;
         console.log("prije kreiranja naslova", this.treningProgram1);
-        const imetr1 = this.treningProgram1[9].imetreninga;
-        const naslov1 = document.getElementById("naslovtr1");
-        naslov1.innerText = imetr1;
+        this.imetr1 = this.treningProgram1[9].imetreninga;
       } catch (error) {
         console.log(error);
       }
@@ -216,9 +216,7 @@ export default {
         const response = await axios.get("http://localhost:3000/fullbody2");
         this.treningProgram2 = response.data;
         console.log(this.treningProgram);
-        const imetr2 = this.treningProgram2[8].imetreninga;
-        const naslov2 = document.getElementById("naslovtr2");
-        naslov2.innerText = imetr2;
+        this.imetr2 = this.treningProgram2[8].imetreninga;
       } catch (error) {
         console.log(error);
       }
@@ -228,9 +226,7 @@ export default {
         const response = await axios.get("http://localhost:3000/lowerbody");
         this.treningProgram1 = response.data;
         console.log(this.treningProgram);
-        const imetr1 = this.treningProgram1[5].imetreninga;
-        const naslov1 = document.getElementById("naslovtr1");
-        naslov1.innerText = imetr1;
+        this.imetr1 = this.treningProgram1[5].imetreninga;
       } catch (error) {
         console.log(error);
       }
@@ -242,9 +238,7 @@ export default {
         );
         this.treningProgram1 = response.data;
         console.log(this.treningProgram);
-        const imetr1 = this.treningProgram1[5].imetreninga;
-        const naslov1 = document.getElementById("naslovtr1");
-        naslov1.innerText = imetr1;
+        this.imetr1 = this.treningProgram1[5].imetreninga;
       } catch (error) {
         console.log(error);
       }
@@ -256,9 +250,7 @@ export default {
         );
         this.treningProgram1 = response.data;
         console.log(this.treningProgram);
-        const imetr1 = this.treningProgram1[5].imetreninga;
-        const naslov1 = document.getElementById("naslovtr1");
-        naslov1.innerText = imetr1;
+        this.imetr1 = this.treningProgram1[5].imetreninga;
       } catch (error) {
         console.log(error);
       }
@@ -268,9 +260,7 @@ export default {
         const response = await axios.get("http://localhost:3000/upperbody");
         this.treningProgram2 = response.data;
         console.log(this.treningProgram);
-        const imetr2 = this.treningProgram2[7].imetreninga;
-        const naslov2 = document.getElementById("naslovtr2");
-        naslov2.innerText = imetr2;
+        this.imetr2 = this.treningProgram2[7].imetreninga;
       } catch (error) {
         console.log(error);
       }
@@ -282,9 +272,7 @@ export default {
         );
         this.treningProgram2 = response.data;
         console.log(this.treningProgram);
-        const imetr2 = this.treningProgram2[7].imetreninga;
-        const naslov2 = document.getElementById("naslovtr2");
-        naslov2.innerText = imetr2;
+        this.imetr2 = this.treningProgram2[7].imetreninga;
       } catch (error) {
         console.log(error);
       }
@@ -296,9 +284,7 @@ export default {
         );
         this.treningProgram2 = response.data;
         console.log(this.treningProgram);
-        const imetr2 = this.treningProgram2[7].imetreninga;
-        const naslov2 = document.getElementById("naslovtr2");
-        naslov2.innerText = imetr2;
+        this.imetr2 = this.treningProgram2[7].imetreninga;
       } catch (error) {
         console.log(error);
       }
@@ -318,6 +304,10 @@ export default {
       this.trening1Kliknut = false;
       this.trening2Kliknut = false;
       this.uputeKliknut = true;
+    },
+
+    idiNaHome() {
+      this.$router.push({ name: "home" });
     }
   },
 };
@@ -326,17 +316,16 @@ export default {
 <style scoped>
 table {
   border-collapse: collapse;
+  border: 1px solid lightgray;
   width: 100%;
   margin-bottom: 4vw;
 }
 
 .upute-tekst {
   font-size: 1.5vw;
-}
-#naslovplana {
   margin-top: 1.5vw;
-  font-size: 3vw;
 }
+
 th,
 td {
   text-align: left;
@@ -344,27 +333,36 @@ td {
   border-bottom: 1px solid #ddd;
 }
 
-th {
-  background-color: #f2f2f2;
+thead {
+  background-color: #001BFF;
+  color: white;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #2DA6E8;
 }
 
 h1 {
-  margin-top: 10px;
-  margin-bottom: 15px;
+  font-size: 3vw;
+  margin-top: 3vw;
+  margin-bottom: 1.5vw;
 }
 
 h2 {
+  margin-top: 3vw;
   font-size: 2.5vw;
-}
-#naslovtr1 {
-  margin-bottom: 1vw;
-}
-
-#naslovtr2 {
-  margin-bottom: 1vw;
 }
 
 .animacije {
   width: 7vw;
 }
+
+button {
+  border-radius: 0.5vw;
+  color: white;
+}
+.traka{
+  background-color: #F2F2F2;
+}
+
 </style>
