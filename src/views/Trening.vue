@@ -1,5 +1,29 @@
 <template>
-<h1>Plan treninga</h1>
+<div class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Trening 1</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Trening 2</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Upute za vježbanje</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+<h1 id = "naslovplana"></h1>
 <h2 id = "naslovtr1"></h2>
 <table>
   <thead>
@@ -8,15 +32,21 @@
       <th>Broj serija</th>
       <th>Broj ponavljanja</th>
       <th>RPE</th>
+      <th>Izvedba vježbe</th>
     </tr>
   </thead>
   <tbody>
-    <tr v-for="vježba in treningProgram1" :key="vježba.ime">
+    <template v-for="vježba in treningProgram1" :key="vježba.ime">
+    <tr v-if="vježba.serija !== undefined">
       <td>{{ vježba.ime }}</td>
       <td>{{ vježba.serija }}</td>
       <td>{{ vježba.min_ponavljanja }} - {{ vježba.max_ponavljanja }}</td>
       <td>{{ vježba.rpe }}</td>
+      <td>
+        <img :src = "vježba.slika" alt = "Animacija vježbe" class = "animacije" />
+      </td>
     </tr>
+    </template>
   </tbody>
 </table>
 <h2 id = "naslovtr2"></h2>
@@ -27,17 +57,28 @@
       <th>Broj serija</th>
       <th>Broj ponavljanja</th>
       <th>RPE</th>
+      <th>Izvedba vježbe</th>
     </tr>
   </thead>
   <tbody>
-    <tr v-for="vježba in treningProgram2" :key="vježba.ime">
+    <template v-for="vježba in treningProgram2" :key="vježba.ime">
+      <tr v-if="vježba.serija !== undefined">
       <td>{{ vježba.ime }}</td>
       <td>{{ vježba.serija }}</td>
       <td>{{ vježba.min_ponavljanja }} - {{ vježba.max_ponavljanja }}</td>
       <td>{{ vježba.rpe }}</td>
-    </tr>
+      <td>
+        <img :src = "vježba.slika" alt = "Animacija vježbe" class = "animacije" />
+      </td>
+      </tr>
+    </template>
   </tbody>
 </table>
+  <p id = "rpe-tekst">
+    Pauza između svake serije je između 2 i 3.5 minute - nije strogo određena.
+    Za svaku vježbu pronaći opterećenje koje će odgovarati zadanom broju ponavljanja
+    i zadanoj RPE skali.
+  </p>
 </template>
 
 <script>
@@ -76,29 +117,44 @@ async provjeriOdgovore() {
       }
     }, 100);
   });
+  const prviNaslov = document.getElementById("naslovplana")
 
-  if (this.mojiOdgovori[0].drugiOdgovor === "2") {
+
+const prviOdgovor = this.mojiOdgovori[0].prviOdgovor;
+const drugiOdgovor = this.mojiOdgovori[0].drugiOdgovor;
+
+
+if (drugiOdgovor === "2") {
+  prviNaslov.innerText = "Treninzi za 2 puta tjedno. Full body A-B";
+  await this.dohvatiFullBody1();
+  await this.dohvatiFullBody2();
+} else if (drugiOdgovor === "3") {
+  if (prviOdgovor === "Podjednako") {
     await this.dohvatiFullBody1();
     await this.dohvatiFullBody2();
-  } else if (this.mojiOdgovori[0].drugiOdgovor ==="3" && this.mojiOdgovori[0].prviOdgovor === "Podjednako") {
-    await this.dohvatiFullBody1();
-    await this.dohvatiFullBody2();
-  } else if (this.mojiOdgovori[0].drugiOdgovor ==="3" && this.mojiOdgovori[0].prviOdgovor === "Trup") {
+    prviNaslov.innerText = "Treninzi za 3 puta tjedno. Full body A-B-A";
+  } else if (prviOdgovor === "Trup") {
     await this.dohvatiLowerBody();
     await this.dohvatiUpperBody();
-  } else if (this.mojiOdgovori[0].drugiOdgovor ==="3" && this.mojiOdgovori[0].prviOdgovor === "Donji dio") {
+    prviNaslov.innerText = "Treninzi za 3 puta tjedno. Upper-Lower-Upper";
+  } else if (prviOdgovor === "Donji dio") {
     await this.dohvatiLowerBody();
     await this.dohvatiUpperBody();
-  } else if (this.mojiOdgovori[0].drugiOdgovor === "4" && this.mojiOdgovori[0].prviOdgovor === "Podjednako") {
+    prviNaslov.innerText = "Treninzi za 3 puta tjedno. Lower-Upper-Lower";
+  }
+} else if (drugiOdgovor === "4") {
+  prviNaslov.innerText = "Treninzi za 4 puta tjedno. Lower-Upper-Lower-Upper";
+  if (prviOdgovor === "Podjednako") {
     await this.dohvatiLowerBody();
     await this.dohvatiUpperBody();
-  } else if (this.mojiOdgovori[0].drugiOdgovor === "4" && this.mojiOdgovori[0].prviOdgovor === "Trup") {
+  } else if (prviOdgovor === "Trup") {
     await this.dohvatiLowerBodyViseGornji();
     await this.dohvatiUpperBodyViseGornji();
-  } else if (this.mojiOdgovori[0].drugiOdgovor === "4" && this.mojiOdgovori[0].prviOdgovor === "Donji dio") {
+  } else if (prviOdgovor === "Donji dio") {
     await this.dohvatiLowerBodyViseDonji();
     await this.dohvatiUpperBodyViseDonji();
   }
+}
 },
 
 async dohvatiFullBody1() {
@@ -207,11 +263,17 @@ try {
 table {
 border-collapse: collapse;
 width: 100%;
+margin-bottom: 4vw;
+}
+
+#rpe-tekst {
+  font-size: 1vw;
+  max-width: 50vw;
 }
 
 th, td {
 text-align: left;
-padding: 8px;
+padding: 0.2vw;
 border-bottom: 1px solid #ddd;
 }
 
@@ -222,5 +284,17 @@ background-color: #f2f2f2;
 h1 {
 margin-top: 10px;
 margin-bottom: 15px;
+}
+
+#naslovtr1 {
+  margin-bottom: 1vw;
+}
+
+#naslovtr2 {
+  margin-bottom: 1vw;
+}
+
+.animacije {
+  width: 7vw;
 }
 </style>
