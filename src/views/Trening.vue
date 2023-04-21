@@ -316,13 +316,13 @@ export default {
 <style scoped>
 table {
   border-collapse: collapse;
-  border: 1px solid lightgray;
   width: 100%;
   margin-bottom: 4vw;
+  box-shadow: 0px 0px 10px #888;
 }
 
 .upute-tekst {
-  font-size: 1.5vw;
+  font-size: 1.7vw;
   margin-top: 1.5vw;
 }
 
@@ -334,15 +334,19 @@ td {
 }
 
 thead {
-  background-color: #001BFF;
+  background-color: #137CBD;
   color: white;
 }
 
 tbody tr:nth-child(even) {
   background-color: #2DA6E8;
 }
+tbody tr:nth-child(odd) {
+  background-color: #F2F2F2;
+}
 
 h1 {
+  font-weight: bold;
   font-size: 3vw;
   margin-top: 3vw;
   margin-bottom: 1.5vw;
@@ -358,11 +362,27 @@ h2 {
 }
 
 button {
+  font-weight: bold;
   border-radius: 0.5vw;
   color: white;
+  background-color: #001BFF;
 }
 .traka{
-  background-color: #F2F2F2;
+  background-color: #2B2B2B;
+}
+
+.nav-link{
+  font-weight: bold;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #ffffff;
+}
+.navbar-light .navbar-nav .nav-link:hover {
+  color: lightgray;
+}
+#idihome:hover {
+  color: lightgrey;
 }
 
 </style>
