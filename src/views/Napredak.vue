@@ -202,9 +202,9 @@ export default {
         mjera.nadlaktica = null;
       });
       axios
-        .post("http://localhost:3000/mjere", this.mjere)
+        .delete("http://localhost:3000/izbrisisve")
         .then((response) => {
-          console.log("Objekt spremljen");
+          console.log(response.data);
         })
         .catch((error) => {
           console.error(error);
