@@ -54,10 +54,10 @@
   <div
     class="container-fluid vh-90 d-flex align-items-top justify-content-center"
   >
-    <div class="container-fluid">
-      <div class="container">
-        <div class="row mt-4">
-          <div class="col">
+    <div class="container">
+        <div class="row">
+        <div class="col md-12">
+          <div class="table-responsive">
             <div v-if="trening1Kliknut">
               <h1>{{ putaTjedno1 }}</h1>
               <table>
@@ -127,8 +127,10 @@
               </table>
             </div>
           </div>
+          </div>
         </div>
         <div v-if="uputeKliknut">
+          <div class="stranica-uputa">
           <h1>Upute za trening</h1>
           <p class="upute-tekst">
             Pauza između svake serije je između 2 i 3.5 minute - nije strogo
@@ -147,7 +149,8 @@
           </p>
         </div>
       </div>
-    </div>
+    
+  </div>
   </div>
 </template>
 
@@ -412,5 +415,9 @@ button {
   border-radius: 0.5vw;
   color: white;
   background-color: #001bff;
+}
+
+.stranica-uputa{
+  align-items: center !important;
 }
 </style>
