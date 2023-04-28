@@ -52,6 +52,24 @@ h1 {
 p {
   font-size: 2.8vw;
 }
+
+.traka{
+  background-color: #2B2B2B;
+}
+
+.nav-link{
+  font-weight: bold;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #ffffff;
+}
+.navbar-light .navbar-nav .nav-link:hover {
+  color: lightgray;
+}
+#idihome:hover {
+  color: lightgrey;
+}
 </style>
 
 

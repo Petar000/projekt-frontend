@@ -1,22 +1,26 @@
 <template>
-  <div class="container-fluid bg-img vh-100 d-flex align-items-center justify-content-center">
+  <div
+    class="container-fluid bg-img vh-100 d-flex align-items-center justify-content-center"
+  >
     <div class="container-fluid home-screen">
-        <div class="d-flex row justify-content-start align-items-start">
-          <img src="../assets/learntotrain1.png" alt="Logo" class="trainLogo img-fluid" />
-        </div>
-        <div class="row justify-content-center align-items-center">
-          <h1 id="naslov">Dobrodošli u aplikaciju za trening</h1>
-          <p id="oaplikaciji">
-            Ova aplikacija je namijenjena za početnike u treningu s
-            opterećenjem. Služi za one kojima je glavni cilj dobiti mišićnu
-            masu, ali i onima kojima je glavni cilj smršavjeti, koristi kako bi
-            očuvali mišiće.
-          </p>
-        </div>
-        <button @click="idiNaPitanja" id="idipitanja">Kreni</button>
+      <div class="d-flex row justify-content-start align-items-start">
+        <img
+          src="../assets/learntotrain1.png"
+          alt="Logo"
+          class="trainLogo img-fluid"
+        />
       </div>
+      <div class="row justify-content-center align-items-center">
+        <h1 id="naslov">Dobrodošli u aplikaciju za trening</h1>
+        <p id="oaplikaciji">
+          Ova aplikacija je namijenjena za početnike u treningu s opterećenjem.
+          Služi za one kojima je glavni cilj dobiti mišićnu masu, ali i onima
+          kojima je glavni cilj smršavjeti, koristi kako bi očuvali mišiće.
+        </p>
+      </div>
+      <button @click="idiNaPitanja" id="idipitanja">Kreni</button>
     </div>
-  
+  </div>
 </template>
 
 <script>
@@ -43,8 +47,7 @@ export default {
   font-weight: bold;
   margin-bottom: 3vw;
 }
-#oaplikaciji {
-}
+
 .home-screen {
   color: white;
 }
@@ -54,15 +57,14 @@ export default {
   background-repeat: no-repeat;
   background-position: center center;
 }
-body{
+body {
   margin: 0px;
   padding: 0px;
 }
-.trainLogo{
+.trainLogo {
   width: 16%;
   position: absolute;
   top: 0;
   left: 0;
-  }
-
+}
 </style>
