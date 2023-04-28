@@ -97,14 +97,14 @@
           </div>
         </div>
         <div class="botuni">
-        <button @click="spremiMjere" class="btn btn-primary" id="spremanje">
-          Spremi mjere
-        </button>
-        <button @click="izbrisiMjere" class="btn btn-danger" id="brisanje">
-          Izbriši podatke o napretku
-        </button>
+          <button @click="spremiMjere" class="btn btn-primary" id="spremanje">
+            Spremi mjere
+          </button>
+          <button @click="izbrisiMjere" class="btn btn-danger" id="brisanje">
+            Izbriši podatke o napretku
+          </button>
+        </div>
       </div>
-    </div>
     </div>
   </div>
 </template>
@@ -266,7 +266,7 @@ table {
   border-collapse: collapse;
   box-shadow: 0px 0px 10px #888;
 }
-.botuni{
+.botuni {
   display: flex;
   justify-content: space-evenly;
 }
@@ -298,5 +298,4 @@ h1 {
   margin-top: 3vw;
   margin-bottom: 1.5vw;
 }
-
 </style>
