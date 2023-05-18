@@ -25,8 +25,17 @@
   bottom: 1.8vw;
   right: 1.8vw;
   font-size: 2.4vw;
-  border-radius: 1vw;
+  border-radius: 2vw;
   padding: 1.5vw 2.4vw;
+}
+@media (max-width: 768px) {
+  #pocetak {  
+  bottom: 6vw;
+  right: 4.5vw;
+  font-size: 4.5vw;
+  border-radius: 3vw;
+  padding: 5vw 7vw;
+}
 }
 </style>
 

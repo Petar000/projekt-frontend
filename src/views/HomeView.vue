@@ -7,7 +7,7 @@
         <img
           src="../assets/learntotrain1.png"
           alt="Logo"
-          class="trainLogo img-fluid"
+          class="trainLogo2 img-fluid"
         />
       </div>
       <div class="row justify-content-center align-items-center">
@@ -66,5 +66,17 @@ body {
   position: absolute;
   top: 0;
   left: 0;
+}
+@media (max-width: 767px) {
+  #naslov{
+    font-size: 8vw;
+  }
+  #idipitanja {
+  bottom: 6vw;
+  right: 4.5vw;
+  font-size: 4.5vw;
+  border-radius: 3vw;
+  padding: 5vw 7vw;
+}
 }
 </style>

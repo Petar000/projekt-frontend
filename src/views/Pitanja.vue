@@ -7,15 +7,17 @@
       <div class="col-12">
         <h2 class="pitanje1"> 1. Koji dio tijela bi htio znatno više napredovati?</h2>
       </div>
-      <div class="col-4">
-        <button class="my-button1" style="margin-left:15vw;">Trup</button>
+      <div class="col-1"></div>
+      <div class="col-3">
+        <button class="my-button1">Trup</button>
       </div>
       <div class="col-4">
         <button class="my-button1">Donji dio</button>
       </div>
-      <div class="col-4">
-        <button class="my-button1" style="margin-right:15vw;">Podjednako</button>
+      <div class="col-3">
+        <button class="my-button1">Podjednako</button>
       </div>
+      <div class="col-1"></div>
     </div>
     <div class="row justify-content-center">
       <div class="col-12">
@@ -136,5 +138,31 @@ export default {
   font-size: 3vw;
   margin-top: 5vw;
   margin-bottom: 2vw;
+}
+
+@media (max-width: 768px) {
+  .pitanje1{
+    font-size: 6vw;
+  }
+  .pitanje2{
+    font-size: 6vw;
+  }
+  .my-button1 {
+  font-size: 4vw;
+  border-radius: 2vw;
+  padding: 3vw 4vw;
+}
+.my-button2 {
+  font-size: 4vw;
+  border-radius: 2vw;
+  padding: 3vw 4vw;
+}
+#dalje{
+  bottom: 6vw;
+  right: 4.5vw;
+  font-size: 4.5vw;
+  border-radius: 3vw;
+  padding: 5vw 7vw;
+}
 }
 </style>

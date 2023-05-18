@@ -29,7 +29,6 @@
   >
     <div class="container-fluid">
       <h1>Praćenje podataka o napredku</h1>
-
       <div style="overflow-x: auto">
         <div class="container">
           <div class="row">
@@ -95,7 +94,6 @@
               </div>
             </div>
           </div>
-        </div>
         <div class="botuni">
           <button @click="spremiMjere" class="btn btn-primary" id="spremanje">
             Spremi mjere
@@ -104,6 +102,7 @@
             Izbriši podatke o napretku
           </button>
         </div>
+      </div>
       </div>
     </div>
   </div>
@@ -280,7 +279,7 @@ table {
   padding: 0.8vw;
   font-size: 1.2vw;
   font-weight: bold;
-  margin-right: 1vw;
+
 }
 #idihome {
   font-weight: bold;
@@ -297,5 +296,23 @@ h1 {
   font-size: 3vw;
   margin-top: 3vw;
   margin-bottom: 1.5vw;
+}
+
+@media (max-width: 768px) {
+  h1{
+    font-size: 8vw;
+    margin-bottom: 5vw;
+  }
+  #spremanje{
+    font-size: 3.5vw;
+    padding: 2.5vw;
+  }
+  #brisanje{
+    font-size: 3.5vw;
+    padding: 2.5vw;
+  }
+  table{
+    width: 10%;
+  }
 }
 </style>

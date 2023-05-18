@@ -419,4 +419,17 @@ button {
 .stranica-uputa {
   align-items: center !important;
 }
+@media (max-width: 768px) {
+  h1{
+    font-size: 8vw;
+    margin-top: 5vw;
+    margin-bottom: 6vw;
+  }
+  .upute-tekst{
+    font-size: 3.5vw;
+  }
+  h2{
+    font-size: 5vw;
+  }
+}
 </style>

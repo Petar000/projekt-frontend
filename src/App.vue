@@ -70,6 +70,21 @@ p {
 #idihome:hover {
   color: lightgrey;
 }
+
+@media (max-width: 768px) {
+  .bg-img {
+    background-size: 10px;
+  }
+  .bg-img2 {
+    background-size: 1150px;
+  }
+  .trainLogo2{
+    width: 30%;
+  }
+  p{
+    font-size: 5vw;
+  }
+}
 </style>
 
 
