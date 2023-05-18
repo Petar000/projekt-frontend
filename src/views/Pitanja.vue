@@ -77,7 +77,7 @@ export default {
   },
   methods: {
     saveObject() {
-      axios.post('http://localhost:3000/odgovori', this.odgovori)
+      axios.post('https://learntotrain-backend.herokuapp.com/odgovori', this.odgovori)
         .then(response => {
           console.log('Objekt spremljen')
         })
