@@ -7,7 +7,6 @@
       <div class="col-12">
         <h2 class="pitanje1"> 1. Koji dio tijela bi htio znatno više napredovati?</h2>
       </div>
-      <div class="col-1"></div>
       <div class="col-3">
         <button class="my-button1">Trup</button>
       </div>

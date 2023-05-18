@@ -311,8 +311,5 @@ h1 {
     font-size: 3.5vw;
     padding: 2.5vw;
   }
-  table{
-    width: 10%;
-  }
 }
 </style>
