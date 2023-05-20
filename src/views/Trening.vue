@@ -163,7 +163,7 @@ export default {
       treningProgram2: {}, // drugi koji ce se prikazati
       putaTjedno1: "",
       putaTjedno2: "",
-      mojiOdgovori: {},
+      mojiOdgovori: "",
       trening1Kliknut: false, //u metodi na kraju se postavlja u true ovisno sta se klikne
       trening2Kliknut: false,
       uputeKliknut: false,
@@ -196,7 +196,7 @@ export default {
             console.log(
               "evo dosli odgovori",
               this.mojiOdgovori,
-              this.mojiOdgovori[0].drugiOdgovor
+              this.mojiOdgovori.drugiOdgovor
             );
             clearInterval(checkMojiOdgovori);
             resolve();
@@ -431,5 +431,8 @@ button {
   h2{
     font-size: 5vw;
   }
+  .animacije {
+  width: 12vw;
+}
 }
 </style>
