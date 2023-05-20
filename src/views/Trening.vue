@@ -432,7 +432,7 @@ button {
     font-size: 5vw;
   }
   .animacije {
-  width: 12vw;
+  width: 15vw;
 }
 }
 </style>
