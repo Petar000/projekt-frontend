@@ -44,7 +44,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#" @click="idiNaMjere"
-              >Praćenje napredka</a
+              >Praćenje napretka</a
             >
           </li>
         </ul>
