@@ -135,7 +135,9 @@
           <p class="upute-tekst">
             Pauza između svake serije je između 2 i 3.5 minute - nije strogo
             određena. Za svaku vježbu pronaći opterećenje koje će odgovarati
-            zadanom broju ponavljanja i zadanoj RPE skali.
+            zadanom broju ponavljanja i zadanoj RPE skali. Cilj je svaki tjedan
+            progresivno povećavati opterećenje kroz kilažu na vježbama ili kroz 
+            broj ponavljanja u zadanom rasponu.
           </p>
           <h2>Što je RPE?</h2>
           <p class="upute-tekst">
@@ -257,7 +259,7 @@ export default {
       try {
         const response = await axios.get("https://learntotrain-backend.herokuapp.com/fullbody2");
         this.treningProgram2 = response.data;
-        console.log(this.treningProgram);
+        console.log(this.treningProgram2);
       } catch (error) {
         console.log(error);
       }
@@ -266,7 +268,7 @@ export default {
       try {
         const response = await axios.get("https://learntotrain-backend.herokuapp.com/lowerbody");
         this.treningProgram1 = response.data;
-        console.log(this.treningProgram);
+        console.log(this.treningProgram1);
       } catch (error) {
         console.log(error);
       }
@@ -277,7 +279,7 @@ export default {
           "https://learntotrain-backend.herokuapp.com/lowerbody-visegornji"
         );
         this.treningProgram1 = response.data;
-        console.log(this.treningProgram);
+        console.log(this.treningProgram1);
       } catch (error) {
         console.log(error);
       }
@@ -288,7 +290,7 @@ export default {
           "https://learntotrain-backend.herokuapp.com/lowerbody-visedonji"
         );
         this.treningProgram1 = response.data;
-        console.log(this.treningProgram);
+        console.log(this.treningProgram1);
       } catch (error) {
         console.log(error);
       }
@@ -297,7 +299,7 @@ export default {
       try {
         const response = await axios.get("https://learntotrain-backend.herokuapp.com/upperbody");
         this.treningProgram2 = response.data;
-        console.log(this.treningProgram);
+        console.log(this.treningProgram2);
       } catch (error) {
         console.log(error);
       }
@@ -308,7 +310,7 @@ export default {
           "https://learntotrain-backend.herokuapp.com/upperbody-visegornji"
         );
         this.treningProgram2 = response.data;
-        console.log(this.treningProgram);
+        console.log(this.treningProgram2);
       } catch (error) {
         console.log(error);
       }
@@ -319,7 +321,7 @@ export default {
           "https://learntotrain-backend.herokuapp.com/upperbody-visedonji"
         );
         this.treningProgram2 = response.data;
-        console.log(this.treningProgram);
+        console.log(this.treningProgram2);
       } catch (error) {
         console.log(error);
       }
