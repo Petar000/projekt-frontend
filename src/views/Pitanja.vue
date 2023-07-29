@@ -90,7 +90,7 @@ export default {
     saveObject() {
       axios
         .put(
-          "https://learntotrain-backend.herokuapp.com/odgovori",
+          "https://learntotrain-backend.onrender.com/odgovori",
           this.odgovori
         )
         .then((response) => {

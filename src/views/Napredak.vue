@@ -201,7 +201,7 @@ export default {
         mjera.nadlaktica = null;
       });
       axios
-        .delete("https://learntotrain-backend.herokuapp.com/izbrisisve")
+        .delete("https://learntotrain-backend.onrender.com/izbrisisve")
         .then((response) => {
           console.log(response.data);
         })
@@ -213,7 +213,7 @@ export default {
     spremiMjere() {
       console.log(this.mjere);
       axios
-        .post("https://learntotrain-backend.herokuapp.com/mjere", this.mjere)
+        .post("https://learntotrain-backend.onrender.com/mjere", this.mjere)
         .then((response) => {
           console.log("Objekt spremljen");
           console.log(this.mjere);
@@ -226,7 +226,7 @@ export default {
 
     async dohvatiMjere() {
       try {
-        const response = await axios.get("https://learntotrain-backend.herokuapp.com/mjere");
+        const response = await axios.get("https://learntotrain-backend.onrender.com/mjere");
         this.dohvaceneMjere = response.data;
         console.log("stigle mjere", this.dohvaceneMjere);
         this.spremiUTablicu();

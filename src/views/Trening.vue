@@ -173,7 +173,7 @@ export default {
   },
   mounted() {
     axios
-      .get("https://learntotrain-backend.herokuapp.com/odgovori")
+      .get("https://learntotrain-backend.onrender.com/odgovori")
       .then((response) => {
         this.mojiOdgovori = response.data;
         console.log("odgovorii nakon json", this.mojiOdgovori);
@@ -249,7 +249,7 @@ export default {
 
     async dohvatiFullBody1() {
       try {
-        const response = await axios.get("https://learntotrain-backend.herokuapp.com/fullbody1");
+        const response = await axios.get("https://learntotrain-backend.onrender.com/fullbody1");
         this.treningProgram1 = response.data;
       } catch (error) {
         console.log(error);
@@ -257,7 +257,7 @@ export default {
     },
     async dohvatiFullBody2() {
       try {
-        const response = await axios.get("https://learntotrain-backend.herokuapp.com/fullbody2");
+        const response = await axios.get("https://learntotrain-backend.onrender.com/fullbody2");
         this.treningProgram2 = response.data;
         console.log(this.treningProgram2);
       } catch (error) {
@@ -266,7 +266,7 @@ export default {
     },
     async dohvatiLowerBody() {
       try {
-        const response = await axios.get("https://learntotrain-backend.herokuapp.com/lowerbody");
+        const response = await axios.get("https://learntotrain-backend.onrender.com/lowerbody");
         this.treningProgram1 = response.data;
         console.log(this.treningProgram1);
       } catch (error) {
@@ -276,7 +276,7 @@ export default {
     async dohvatiLowerBodyViseGornji() {
       try {
         const response = await axios.get(
-          "https://learntotrain-backend.herokuapp.com/lowerbody-visegornji"
+          "https://learntotrain-backend.onrender.com/lowerbody-visegornji"
         );
         this.treningProgram1 = response.data;
         console.log(this.treningProgram1);
@@ -287,7 +287,7 @@ export default {
     async dohvatiLowerBodyViseDonji() {
       try {
         const response = await axios.get(
-          "https://learntotrain-backend.herokuapp.com/lowerbody-visedonji"
+          "https://learntotrain-backend.onrender.com/lowerbody-visedonji"
         );
         this.treningProgram1 = response.data;
         console.log(this.treningProgram1);
@@ -297,7 +297,7 @@ export default {
     },
     async dohvatiUpperBody() {
       try {
-        const response = await axios.get("https://learntotrain-backend.herokuapp.com/upperbody");
+        const response = await axios.get("https://learntotrain-backend.onrender.com/upperbody");
         this.treningProgram2 = response.data;
         console.log(this.treningProgram2);
       } catch (error) {
@@ -307,7 +307,7 @@ export default {
     async dohvatiUpperBodyViseGornji() {
       try {
         const response = await axios.get(
-          "https://learntotrain-backend.herokuapp.com/upperbody-visegornji"
+          "https://learntotrain-backend.onrender.com/upperbody-visegornji"
         );
         this.treningProgram2 = response.data;
         console.log(this.treningProgram2);
@@ -318,7 +318,7 @@ export default {
     async dohvatiUpperBodyViseDonji() {
       try {
         const response = await axios.get(
-          "https://learntotrain-backend.herokuapp.com/upperbody-visedonji"
+          "https://learntotrain-backend.onrender.com/upperbody-visedonji"
         );
         this.treningProgram2 = response.data;
         console.log(this.treningProgram2);
