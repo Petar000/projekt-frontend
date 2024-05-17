@@ -265,6 +265,15 @@ table {
   border-collapse: collapse;
   box-shadow: 0px 0px 10px #888;
 }
+.table-responsive {
+  overflow-x: auto;
+  overflow-y: auto;
+}
+.table-responsive input {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
 .botuni {
   display: flex;
   justify-content: space-evenly;
@@ -279,7 +288,6 @@ table {
   padding: 0.8vw;
   font-size: 1.2vw;
   font-weight: bold;
-
 }
 #idihome {
   font-weight: bold;
