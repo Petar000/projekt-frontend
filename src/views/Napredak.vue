@@ -46,7 +46,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="(mjera, index) in mjere" :key="index">
+                    <tr v-for="(mjera, index) in mjere.objekti" :key="index">
                       <td>Tjedan {{ index + 1 }}</td>
                       <td>
                         <input
@@ -113,7 +113,9 @@ import axios from "axios";
 export default {
   data() {
     return {
-      mjere: [
+      mjere: {
+        sessionId: this.$sessionId,
+        objekti: [
         {
           natkoljenica: null,
           bokovi: null,
@@ -185,6 +187,7 @@ export default {
           nadlaktica: null,
         },
       ],
+      },
       dohvaceneMjere: [],
     };
   },
@@ -226,7 +229,11 @@ export default {
 
     async dohvatiMjere() {
       try {
-        const response = await axios.get("https://learntotrain-backend.onrender.com/mjere");
+        const response = await axios.get("https://learntotrain-backend.onrender.com/mjere", {
+      params: {
+        sessionId: this.$sessionId
+      }
+    });
         this.dohvaceneMjere = response.data;
         console.log("stigle mjere", this.dohvaceneMjere);
         this.spremiUTablicu();
@@ -236,7 +243,7 @@ export default {
     },
 
     async spremiUTablicu() {
-      const praveMjere = this.dohvaceneMjere[0].rezultati;
+      const praveMjere = this.dohvaceneMjere.objekti[0].rezultati;
 
       this.mjere.forEach((mjera, index) => {
         mjera.natkoljenica = praveMjere[index].natkoljenica;
