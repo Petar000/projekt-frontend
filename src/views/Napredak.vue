@@ -213,7 +213,7 @@ export default {
     async spremiUTablicu() {
       console.log('Struktura dohvaceneMjere:', this.dohvaceneMjere);
 
-      const praveMjere = this.dohvaceneMjere[0].rezultati.objekti;
+      const praveMjere = this.dohvaceneMjere.rezultati.objekti;
 
       for (let i = 0; i < this.mjere.objekti.length; i++) {
         this.mjere.objekti[i].natkoljenica = praveMjere[i].natkoljenica;
