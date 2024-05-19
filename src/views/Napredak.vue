@@ -291,6 +291,12 @@ h1 {
 }
 
 @media (max-width: 768px) {
+  th{
+    font-size: 2vw;
+  }
+  td{
+    font-size: 2vw;
+  }
   h1 {
     font-size: 8vw;
     margin-bottom: 5vw;
