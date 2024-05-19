@@ -434,7 +434,13 @@ button {
     font-size: 5vw;
   }
   .animacije {
-  width: 20vw;
-}
+  width: 16vw;
+  }
+  th{
+    font-size: 2.3vw;
+  }
+  td{
+    font-size: 2.3vw;
+  }
 }
 </style>

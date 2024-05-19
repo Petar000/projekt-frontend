@@ -27,11 +27,11 @@
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th>Opseg natkoljenice</th>
+                      <th class="duzi-th">Opseg natkoljenice</th>
                       <th>Opseg bokova</th>
                       <th>Opseg struka</th>
                       <th>Opseg prsa</th>
-                      <th>Opseg nadlaktice</th>
+                      <th class="duzi-th">Opseg nadlaktice</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -292,24 +292,27 @@ h1 {
 
 @media (max-width: 768px) {
   th{
-    font-size: 2vw;
+    font-size: 2.3vw;
   }
   td{
-    font-size: 2vw;
+    font-size: 2.3vw;
+  }
+  .duzi-th{
+    font-size: 1.6vw;
   }
   h1 {
-    font-size: 8vw;
+    font-size: 6.5vw;
     margin-bottom: 5vw;
   }
 
   #spremanje {
-    font-size: 3.5vw;
-    padding: 2.5vw;
+    font-size: 3.2vw;
+    padding: 2.3vw;
   }
 
   #brisanje {
-    font-size: 3.5vw;
-    padding: 2.5vw;
+    font-size: 3.2vw;
+    padding: 2.3vw;
   }
 }
 </style>
