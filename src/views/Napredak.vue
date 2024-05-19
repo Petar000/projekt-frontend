@@ -246,15 +246,15 @@ export default {
     async spremiUTablicu() {
       console.log('Struktura dohvaceneMjere:', this.dohvaceneMjere);
 
-      const praveMjere = this.dohvaceneMjere[0].rezultati.objekti[0];
+      const praveMjere = this.dohvaceneMjere[0].rezultati.objekti;
 
-      this.mjere.forEach((mjera, index) => {
-        mjera.natkoljenica = praveMjere[index].natkoljenica;
-        mjera.bokovi = praveMjere[index].bokovi;
-        mjera.struk = praveMjere[index].struk;
-        mjera.prsa = praveMjere[index].prsa;
-        mjera.nadlaktica = praveMjere[index].nadlaktica;
-      });
+      for (let i = 0; i < this.mjere.objekti.length; i++) {
+    this.mjere.objekti[i].natkoljenica = praveMjere[i].natkoljenica;
+    this.mjere.objekti[i].bokovi = praveMjere[i].bokovi;
+    this.mjere.objekti[i].struk = praveMjere[i].struk;
+    this.mjere.objekti[i].prsa = praveMjere[i].prsa;
+    this.mjere.objekti[i].nadlaktica = praveMjere[i].nadlaktica;
+  }
     },
 
     idiNaTrening() {
