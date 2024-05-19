@@ -46,5 +46,8 @@ export default {
       this.$router.push({ name: "Trening" });
     },
   },
+  mounted(){
+    console.log('vrijednost sessionId: ', this.$sessionId);
+  }
 };
 </script>

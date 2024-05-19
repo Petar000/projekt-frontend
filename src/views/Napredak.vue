@@ -192,6 +192,7 @@ export default {
     };
   },
   mounted() {
+    console.log('sessionId vrijednost: ', this.$sessionId)
     this.dohvatiMjere();
   },
   methods: {
@@ -243,7 +244,9 @@ export default {
     },
 
     async spremiUTablicu() {
-      const praveMjere = this.dohvaceneMjere.objekti[0].rezultati;
+      console.log('Struktura dohvaceneMjere:', this.dohvaceneMjere);
+
+      const praveMjere = this.dohvaceneMjere[0].rezultati.objekti[0];
 
       this.mjere.forEach((mjera, index) => {
         mjera.natkoljenica = praveMjere[index].natkoljenica;
