@@ -422,6 +422,9 @@ button {
   align-items: center !important;
 }
 @media (max-width: 768px) {
+  #idihome{
+    margin-top: 2vw;
+  }
   h1{
     font-size: 8vw;
     margin-top: 5vw;
