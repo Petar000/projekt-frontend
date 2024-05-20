@@ -423,7 +423,7 @@ button {
 }
 @media (max-width: 768px) {
   #idihome{
-    margin-top: 2vw;
+    margin-top: 3vw;
   }
   h1{
     font-size: 8vw;
@@ -440,10 +440,10 @@ button {
   width: 16vw;
   }
   th{
-    font-size: 2.3vw;
+    font-size: 2.4vw;
   }
   td{
-    font-size: 2.3vw;
+    font-size: 2.4vw;
   }
 }
 </style>
