@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import axios from 'axios'
 import Vue from 'vue'
+import { v4 as uuidv4 } from 'uuid';
 
 const app = createApp(App); // Kreiranje Vue instance
 
@@ -27,8 +28,8 @@ const generateSessionId = () => {
 
 // Funkcija za postavljanje session ID-a u kolačić
 const setSessionCookie = (sessionId) => {
-  // Postavljanje session ID-a u kolačić s atributom SameSite=Strict
-  document.cookie = `sessionId=${sessionId}; SameSite=Strict`;
+  // Postavljanje session ID-a u kolačić s atributom SameSite=None; Secure
+  document.cookie = `sessionId=${sessionId}; SameSite=None; Secure`;
 };
 
 // Dohvaćanje postojećeg session ID-a iz kolačića
