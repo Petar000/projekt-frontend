@@ -291,18 +291,22 @@ h1 {
 }
 
 @media (max-width: 768px) {
-  #idihome{
+  #idihome {
     margin-top: 3vw;
   }
-  th{
+
+  th {
     font-size: 2.3vw;
   }
-  td{
+
+  td {
     font-size: 2.3vw;
   }
-  .duzi-th{
+
+  .duzi-th {
     font-size: 2vw;
   }
+
   h1 {
     font-size: 6.5vw;
     margin-bottom: 5vw;

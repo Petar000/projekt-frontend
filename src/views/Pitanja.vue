@@ -1,13 +1,7 @@
 <template>
-  <div
-    class="container-fluid bg-img2 vh-100 d-flex flex-column justify-content-center align-items-center"
-  >
+  <div class="container-fluid bg-img2 vh-100 d-flex flex-column justify-content-center align-items-center">
     <div class="d-flex row justify-content-start align-items-start">
-      <img
-        src="../assets/learntotrain1.png"
-        alt="Logo"
-        class="trainLogo2 img-fluid"
-      />
+      <img src="../assets/learntotrain1.png" alt="Logo" class="trainLogo2 img-fluid" />
     </div>
     <div class="row justify-content-center">
       <div class="col-12">
@@ -129,6 +123,7 @@ export default {
   border-radius: 1vw;
   padding: 1.5vw 2.2vw;
 }
+
 .my-button2 {
   font-size: 2vw;
   border-radius: 1vw;
@@ -143,10 +138,12 @@ export default {
   border-radius: 1vw;
   padding: 1.5vw 2.4vw;
 }
+
 .pitanje1 {
   font-size: 3vw;
   margin-bottom: 2vw;
 }
+
 .pitanje2 {
   font-size: 3vw;
   margin-top: 5vw;
@@ -157,19 +154,23 @@ export default {
   .pitanje1 {
     font-size: 6vw;
   }
+
   .pitanje2 {
     font-size: 6vw;
   }
+
   .my-button1 {
     font-size: 4vw;
     border-radius: 2vw;
     padding: 3vw 4vw;
   }
+
   .my-button2 {
     font-size: 4vw;
     border-radius: 2vw;
     padding: 3vw 4vw;
   }
+
   #dalje {
     bottom: 6vw;
     right: 4.5vw;

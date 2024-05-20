@@ -1,59 +1,30 @@
 <template>
   <div class="navbar navbar-expand-lg navbar-light traka">
     <div class="container-fluid">
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <button @click="idiNaHome" id="idihome">Naslovna stranica</button>
           <li class="nav-item">
-            <a
-              class="nav-link"
-              href="#"
-              id="tr1kliknut"
-              @click="pokaziTrening1()"
-              >Trening 1</a
-            >
+            <a class="nav-link" href="#" id="tr1kliknut" @click="pokaziTrening1()">Trening 1</a>
           </li>
           <li class="nav-item">
-            <a
-              class="nav-link"
-              href="#"
-              id="tr2kliknut"
-              @click="pokaziTrening2()"
-              >Trening 2</a
-            >
+            <a class="nav-link" href="#" id="tr2kliknut" @click="pokaziTrening2()">Trening 2</a>
           </li>
           <li class="nav-item">
-            <a
-              class="nav-link"
-              href="#"
-              id="uputekliknute"
-              @click="pokaziUpute()"
-              >Upute za vježbanje</a
-            >
+            <a class="nav-link" href="#" id="uputekliknute" @click="pokaziUpute()">Upute za vježbanje</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" @click="idiNaMjere"
-              >Praćenje napretka</a
-            >
+            <a class="nav-link" href="#" @click="idiNaMjere">Praćenje napretka</a>
           </li>
         </ul>
       </div>
     </div>
   </div>
-  <div
-    class="container-fluid vh-90 d-flex align-items-top justify-content-center"
-  >
+  <div class="container-fluid vh-90 d-flex align-items-top justify-content-center">
     <div class="container">
       <div class="row">
         <div class="col md-12">
@@ -81,11 +52,7 @@
                       </td>
                       <td>{{ vježba.rpe }}</td>
                       <td>
-                        <img
-                          :src="vježba.slika"
-                          alt="Animacija vježbe"
-                          class="animacije"
-                        />
+                        <img :src="vježba.slika" alt="Animacija vježbe" class="animacije" />
                       </td>
                     </tr>
                   </template>
@@ -115,11 +82,7 @@
                       </td>
                       <td>{{ vježba.rpe }}</td>
                       <td>
-                        <img
-                          :src="vježba.slika"
-                          alt="Animacija vježbe"
-                          class="animacije"
-                        />
+                        <img :src="vježba.slika" alt="Animacija vježbe" class="animacije" />
                       </td>
                     </tr>
                   </template>
@@ -136,7 +99,7 @@
             Pauza između svake serije je između 2 i 3.5 minute - nije strogo
             određena. Za svaku vježbu pronaći opterećenje koje će odgovarati
             zadanom broju ponavljanja i zadanoj RPE skali. Cilj je svaki tjedan
-            progresivno povećavati opterećenje kroz kilažu na vježbama ili kroz 
+            progresivno povećavati opterećenje kroz kilažu na vježbama ili kroz
             broj ponavljanja u zadanom rasponu.
           </p>
           <h2>Što je RPE?</h2>
@@ -391,6 +354,7 @@ thead {
 tbody tr:nth-child(even) {
   background-color: #2da6e8;
 }
+
 tbody tr:nth-child(odd) {
   background-color: #f2f2f2;
 }
@@ -421,28 +385,35 @@ button {
 .stranica-uputa {
   align-items: center !important;
 }
+
 @media (max-width: 768px) {
-  #idihome{
+  #idihome {
     margin-top: 3vw;
   }
-  h1{
+
+  h1 {
     font-size: 8vw;
     margin-top: 5vw;
     margin-bottom: 6vw;
   }
-  .upute-tekst{
+
+  .upute-tekst {
     font-size: 3.5vw;
   }
-  h2{
+
+  h2 {
     font-size: 5vw;
   }
+
   .animacije {
-  width: 16vw;
+    width: 16vw;
   }
-  th{
+
+  th {
     font-size: 2.5vw;
   }
-  td{
+
+  td {
     font-size: 2.5vw;
   }
 }
