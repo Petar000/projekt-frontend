@@ -440,10 +440,10 @@ button {
   width: 16vw;
   }
   th{
-    font-size: 2.4vw;
+    font-size: 2.5vw;
   }
   td{
-    font-size: 2.4vw;
+    font-size: 2.5vw;
   }
 }
 </style>

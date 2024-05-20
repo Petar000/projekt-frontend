@@ -291,6 +291,9 @@ h1 {
 }
 
 @media (max-width: 768px) {
+  #idihome{
+    margin-top: 3vw;
+  }
   th{
     font-size: 2.3vw;
   }
