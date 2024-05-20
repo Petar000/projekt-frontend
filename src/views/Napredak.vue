@@ -298,7 +298,7 @@ h1 {
     font-size: 2.3vw;
   }
   .duzi-th{
-    font-size: 1.6vw;
+    font-size: 2vw;
   }
   h1 {
     font-size: 6.5vw;
