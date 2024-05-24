@@ -301,7 +301,8 @@ h1 {
 
   h1 {
     font-size: 6.3vw;
-    margin-bottom: 4vw;
+    margin-top: 4vw;
+    margin-bottom: 4.5vw;
   }
 
   #spremanje {
