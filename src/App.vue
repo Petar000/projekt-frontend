@@ -1,8 +1,55 @@
 <template>
-  <router-view/>
+  <router-view v-slot="{ Component, route }">
+    <!-- Provjera ako je ruta jedna od onih koje zahtijevaju tranziciju -->
+    <transition v-if="trebaTranziciju(route.name)" :name="napraviTranziciju(route.name)" mode="out-in">
+      <component :is="Component" />
+    </transition>
+    <!-- Ako ruta ne zahtijeva tranziciju, prikaži komponentu izravno -->
+    <component v-else :is="Component" />
+  </router-view>
 </template>
 
+<script>
+export default {
+  name: 'App',
+  methods: {
+    // Metoda za provjeru treba li se primijeniti tranzicija za rutu
+    trebaTranziciju(routeName) {
+      // Vratite false ako je ime rute 'Napredak', inače vratite true
+      return routeName !== 'Napredak';
+    },
+    // Metoda za dobivanje imena tranzicije prema imenu rute
+    napraviTranziciju(routeName) {
+      switch (routeName) {
+        case 'Pitanja':
+          return 'slide';
+        case 'Savjeti':
+          return 'slide';
+        case 'Trening':
+          return 'fade';
+      }
+    }
+  }
+};
+</script>
+
 <style lang="scss">
+/* Fade Transition */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+/* Slide Transition */
+.slide-enter-active, .slide-leave-active {
+  transition: transform 0.5s;
+}
+.slide-enter, .slide-leave-to {
+  transform: translateX(-100%);
+}
+
 #app {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
