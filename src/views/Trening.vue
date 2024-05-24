@@ -109,7 +109,7 @@
             ponavljanja mogli napraviti u njoj prije nego bi ostali bez snage.
             Broj ponavljanja u rezervi oduzimamo od broja 10 kako bi dobili
             vrijednost skale. Na primjer ako bi odradili seriju čućnja s 60kg i
-            napravili 8 ponavljanja, a mogli bi maksimalno napraviti 10, onda tu
+            napravili 10 ponavljanja, a mogli bi maksimalno napraviti 12, onda tu
             seriju ocjenjujemo s RPE 8.
           </p>
         </div>
