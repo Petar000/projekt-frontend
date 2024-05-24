@@ -122,13 +122,21 @@ export default {
   font-size: 2vw;
   border-radius: 1vw;
   padding: 1.5vw 2.2vw;
-}
+  transition: transform 0.1s ease;
+  }
+  .my-button1:active{
+    transform: scale(1.2);
+  }
 
 .my-button2 {
   font-size: 2vw;
   border-radius: 1vw;
   padding: 1.5vw 2.5vw;
-}
+  transition: transform 0.2s ease;
+  }
+  .my-button2:active{
+    transform: scale(1.2);
+  }
 
 #dalje {
   position: absolute;
@@ -164,7 +172,6 @@ export default {
     border-radius: 2vw;
     padding: 3vw 4vw;
   }
-
   .my-button2 {
     font-size: 4vw;
     border-radius: 2vw;
