@@ -296,16 +296,12 @@ h1 {
   }
 
   td {
-    font-size: 2.3vw;
-  }
-
-  .duzi-th {
-    font-size: 2vw;
+    font-size: 2.1vw;
   }
 
   h1 {
-    font-size: 6.5vw;
-    margin-bottom: 5vw;
+    font-size: 6.3vw;
+    margin-bottom: 4vw;
   }
 
   #spremanje {
