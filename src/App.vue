@@ -58,6 +58,10 @@ export default {
   color: #2c3e50;
 }
 
+button:hover{
+  color: lightgrey;
+}
+
 nav {
   padding: 30px;
   a {
@@ -71,10 +75,11 @@ nav {
 }
 
 .trainLogo2{
-  width: 16%;
+  width: 12vw;
   position: absolute;
   top: 0;
   left: 0;
+  padding: 0 !important;
   }
 
 .bg-img2{
@@ -127,7 +132,7 @@ p {
     background-position: left bottom;
   }
   .trainLogo2{
-    width: 30%;
+    width: 28vw;
   }
   p{
     font-size: 5vw;

@@ -30,7 +30,7 @@
         <div class="col md-12">
           <div class="table-responsive">
             <div v-if="trening1Kliknut">
-              <h1>{{ putaTjedno1 }}</h1>
+              <h1 id="glavni-naslov">{{ putaTjedno1 }}</h1>
               <table>
                 <thead>
                   <tr>
@@ -359,6 +359,10 @@ tbody tr:nth-child(odd) {
   background-color: #f2f2f2;
 }
 
+#glavni-naslov{
+  font-size: 3vw;
+}
+
 h1 {
   font-weight: bold;
   font-size: 3vw;
@@ -372,7 +376,8 @@ h2 {
 }
 
 .animacije {
-  width: 7vw;
+  width: 126px;
+  height: 85px;
 }
 
 button {
@@ -386,16 +391,27 @@ button {
   align-items: center !important;
 }
 
+@media (max-width: 1024px){
+  .animacije {
+    width: 95px;
+    height: 64px;
+  }
+}
+
 @media (max-width: 768px) {
   #idihome {
     margin-top: 3vw;
   }
 
   h1 {
-    font-size: 8vw;
+    font-size: 7vw;
     margin-top: 5vw;
     margin-bottom: 6vw;
   }
+
+  #glavni-naslov{
+  font-size: 7vw;
+}
 
   .upute-tekst {
     font-size: 3.5vw;
@@ -406,7 +422,8 @@ button {
   }
 
   .animacije {
-    width: 16vw;
+    width: 75px;
+    height: 50px;
   }
 
   th {

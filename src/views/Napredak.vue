@@ -26,12 +26,12 @@
                 <table class="table table-dark table-striped table-bordered">
                   <thead>
                     <tr>
-                      <th>#</th>
-                      <th class="duzi-th">Opseg natkoljenice</th>
-                      <th>Opseg bokova</th>
-                      <th>Opseg struka</th>
-                      <th>Opseg prsa</th>
-                      <th class="duzi-th">Opseg nadlaktice</th>
+                      <th class="col-1">#</th>
+                      <th class="col-2">Opseg bedra</th>
+                      <th class="col-2">Opseg bokova</th>
+                      <th class="col-2">Opseg struka</th>
+                      <th class="col-2">Opseg prsa</th>
+                      <th class="col-2">Opseg ruke</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -279,10 +279,6 @@ table {
   background-color: #001bff;
 }
 
-#idihome:hover {
-  color: lightgrey;
-}
-
 h1 {
   font-weight: bold;
   font-size: 3vw;
@@ -313,13 +309,13 @@ h1 {
   }
 
   #spremanje {
-    font-size: 3.2vw;
-    padding: 2.3vw;
+    font-size: 3vw;
+    padding: 2.2vw;
   }
 
   #brisanje {
-    font-size: 3.2vw;
-    padding: 2.3vw;
+    font-size: 3vw;
+    padding: 2vw;
   }
 }
 </style>

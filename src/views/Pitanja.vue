@@ -174,9 +174,9 @@ export default {
   #dalje {
     bottom: 6vw;
     right: 4.5vw;
-    font-size: 4.5vw;
+    font-size: 4vw;
     border-radius: 3vw;
-    padding: 5vw 7vw;
+    padding: 3.8vw 5.7vw;
   }
 }
 </style>
