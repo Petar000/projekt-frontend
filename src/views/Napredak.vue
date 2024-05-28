@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="navbar navbar-expand-lg navbar-dark bg-dark traka" style="padding: 0;">
+    <div class="navbar navbar-expand-lg navbar-dark traka" style="padding: 0; background-color: #444;">
       <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center w-100" style="margin: 1vw 0;">
           <a @click="idiNaTrening" href="#" id="trening-povratak">Povratak na trening</a>

@@ -36,6 +36,9 @@
     border-radius: 3vw;
     padding: 3.8vw 5.7vw;
   }
+  body {
+    overflow: hidden;
+  }
 }
 </style>
 

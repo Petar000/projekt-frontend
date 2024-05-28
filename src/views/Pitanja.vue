@@ -159,6 +159,9 @@ export default {
 }
 
 @media (max-width: 768px) {
+  body {
+    overflow: hidden;
+  }
   .pitanje1 {
     font-size: 6vw;
   }

@@ -500,7 +500,7 @@ button:hover {
   overflow-x: auto; /* Dodajemo horizontalni scrollbar */
 }
 .home {
-  background-color: #137cbd;
+  background-color: darkgray;
   font-size: medium;
   padding: 0.5vw 1vw;
   width: auto;
@@ -535,7 +535,7 @@ button:hover {
     transition: transform 0.2s ease;
   }
   .nav-item a.clicked {
-    transform: scale(1.2); /* Uvećavamo link kad je kliknut */
+    transform: scale(1.15); /* Uvećavamo link kad je kliknut */
   }
 }
 
