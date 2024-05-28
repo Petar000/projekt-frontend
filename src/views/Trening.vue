@@ -1,29 +1,36 @@
 <template>
-  <div class="navbar navbar-expand-lg navbar-light traka">
-    <div class="container-fluid">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <button @click="idiNaHome" id="idihome">Naslovna stranica</button>
-          <li class="nav-item">
-            <a class="nav-link" href="#" id="tr1kliknut" @click="pokaziTrening1()">Trening 1</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" id="tr2kliknut" @click="pokaziTrening2()">Trening 2</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" id="uputekliknute" @click="pokaziUpute()">Upute za vježbanje</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" @click="idiNaMjere">Praćenje napretka</a>
-          </li>
-        </ul>
+  <div>
+    <!-- Gornji dio stranice s korisničkim imenom i opcijom za odjavu -->
+    <div class="navbar navbar-expand-lg navbar-light traka" style="background-color: lightgray; padding: 0;">
+      <div class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center w-100">
+          <button @click="idiNaHome" class="home btn btn-primary btn-md">Naslovna stranica</button>
+          <p style="font-size:small;" class="justify-content-center align-items-center"></p>
+          <button class="odjava btn btn-primary btn-md" @click="idiNaLogin">Odjavi se</button>
+        </div>
       </div>
     </div>
   </div>
+  <div class="navbar navbar-expand-lg navbar-light traka fixed-bottom">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#" id="tr1kliknut" @click="pokaziTrening1()">Trening 1</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" id="tr2kliknut" @click="pokaziTrening2()">Trening 2</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" id="uputekliknute" @click="pokaziUpute()">Upute za vježbanje</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" @click="idiNaMjere">Praćenje napretka</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
   <div class="container-fluid vh-90 d-flex align-items-top justify-content-center">
     <div class="container">
       <div class="row">
@@ -42,16 +49,16 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <template v-for="vježba in treningProgram1" :key="vježba.ime">
+                  <template v-for="(vježba, index) in treningProgram1" :key="vježba.ime">
                     <tr v-if="vježba.serija !== undefined">
-                      <td>{{ vježba.ime }}</td>
-                      <td>{{ vježba.serija }}</td>
-                      <td>
+                      <td @click="() => prikaziPovecanuSliku1(vježba.slika, index)">{{ vježba.ime }}</td>
+                      <td @click="() => prikaziPovecanuSliku1(vježba.slika, index)">{{ vježba.serija }}</td>
+                      <td @click="() => prikaziPovecanuSliku1(vježba.slika, index)">
                         {{ vježba.min_ponavljanja }} -
                         {{ vježba.max_ponavljanja }}
                       </td>
-                      <td>{{ vježba.rpe }}</td>
-                      <td>
+                      <td @click="() => prikaziPovecanuSliku1(vježba.slika, index)">{{ vježba.rpe }}</td>
+                      <td @click="() => prikaziPovecanuSliku1(vježba.slika, index)">
                         <img :src="vježba.slika" alt="Animacija vježbe" class="animacije" />
                       </td>
                     </tr>
@@ -72,16 +79,16 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <template v-for="vježba in treningProgram2" :key="vježba.ime">
+                  <template v-for="(vježba, index) in treningProgram2" :key="vježba.ime">
                     <tr v-if="vježba.serija !== undefined">
-                      <td>{{ vježba.ime }}</td>
-                      <td>{{ vježba.serija }}</td>
-                      <td>
+                      <td @click="() => prikaziPovecanuSliku2(vježba.slika, index)">{{ vježba.ime }}</td>
+                      <td @click="() => prikaziPovecanuSliku2(vježba.slika, index)">{{ vježba.serija }}</td>
+                      <td @click="() => prikaziPovecanuSliku2(vježba.slika, index)">
                         {{ vježba.min_ponavljanja }} -
                         {{ vježba.max_ponavljanja }}
                       </td>
-                      <td>{{ vježba.rpe }}</td>
-                      <td>
+                      <td @click="() => prikaziPovecanuSliku2(vježba.slika, index)">{{ vježba.rpe }}</td>
+                      <td @click="() => prikaziPovecanuSliku2(vježba.slika, index)">
                         <img :src="vježba.slika" alt="Animacija vježbe" class="animacije" />
                       </td>
                     </tr>
@@ -116,6 +123,9 @@
       </div>
     </div>
   </div>
+  <div v-if="modalPrikazan" class="modal" @click="zatvoriModal">
+    <img :src="modalniSadrzaj" alt="Povećana slika" class="povecana-slika" @click.stop />
+  </div>
 </template>
 
 <script>
@@ -132,6 +142,8 @@ export default {
       trening1Kliknut: false, //u metodi na kraju se postavlja u true ovisno sta se klikne
       trening2Kliknut: false,
       uputeKliknut: false,
+      modalPrikazan: false, // stanje modalnog prozora
+    modalniSadrzaj: "",
     };
   },
   mounted() {
@@ -322,7 +334,30 @@ export default {
     idiNaMjere() {
       this.$router.push({ name: "Napredak" });
     },
+
+    idiNaLogin(){
+      this.$router.push({ name: "login" })
+    },
+
+    prikaziPovecanuSliku1(slika, index) {
+  console.log('ovo je index ', index);
+  console.log('vrijednost slike ', slika);
+  console.log('treningProgram1', this.treningProgram1)
+  this.modalniSadrzaj = this.treningProgram1[index].slika;
+  this.modalPrikazan = true;
   },
+  zatvoriModal() {
+  this.modalPrikazan = false;
+  },
+
+  prikaziPovecanuSliku2(slika, index) {
+  this.modalniSadrzaj = this.treningProgram2[index].slika;
+  this.modalPrikazan = true; 
+  },
+  zatvoriModal() {
+  this.modalPrikazan = false;
+  },
+  }
 };
 </script>
 
@@ -387,20 +422,120 @@ button {
   background-color: #001bff;
 }
 
+button:hover {
+  color: lightgray;
+}
+
 .stranica-uputa {
   align-items: center !important;
 }
 
+.modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* poluprozirni overlay */
+    z-index: 1000; /* visok indeks z-ordera da bi bio iznad ostalog sadržaja */
+}
+
+/* Stilizacija slike unutar modalnog prozora */
+.modal img {
+    max-width: 80%; /* Maksimalna širina slike unutar modaog prozora */
+    max-height: 80%; /* Maksimalna visina slike unutar modaog prozora */
+    border-radius: 5px; /* zaobljeni rubovi slike */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* sjena oko slike */
+}
+
+.navbar {
+    padding: 1vw 2vw;
+  }
+
+  .btn {
+    width: auto !important; /* Vraćanje širine na auto */
+  }
+
+  .traka {
+    border-radius: 0; /* Uklanjanje zaobljenih rubova */
+  }
+
+  .fixed-bottom {
+    bottom: 0; /* Postavljanje donje trake na dno stranice */
+    min-height: 4vw;
+    font-size: 1vw;
+  }
+  .nav-link {
+  width: auto;
+  white-space: nowrap;
+  font-size: medium; 
+}
+.navbar-nav {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  overflow-x: auto; /* Dodajemo horizontalni scrollbar */
+}
+.home {
+  font-size: medium;
+  padding: 0.5vw 1vw;
+  width: auto;
+  margin: 0.5vw 1.5vw;
+}
+.odjava {
+  font-size: medium; 
+  padding: 0.5vw 1vw;
+  width: auto; /* Podešavanje širine na automatsko */
+  margin: 0.5vw 1.5vw;
+  background-color: darkgrey;
+  border: none;
+}
+.navbar-toggler {
+  display: none;
+}
 @media (max-width: 1024px){
+
   .animacije {
     width: 95px;
     height: 64px;
   }
+  .navbar-expand-lg .navbar-collapse {
+    flex-basis: 100%; /* Navbar se neće odmah kolapsirati na ovom breakpointu */
+    display: flex !important;
+    flex-basis: auto;
+    flex-grow: 1;
+    overflow: hidden;
+    height: auto;
+  }
+  .navbar-nav .nav-item {
+    flex: 0 0 auto; /* Poništavamo fleksibilnost linkova */
+  }
 }
 
 @media (max-width: 768px) {
-  #idihome {
-    margin-top: 3vw;
+  .home{
+    border-radius: 1.5vw;
+  }
+  .odjava{
+    border-radius: 1.5vw;
+  }
+  .nav-link {
+  font-size: small; 
+}
+  .navbar-nav{
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+  }
+  .navbar-nav .nav-item {
+    flex: 1 1 auto;
+    text-align: center;
+    margin: 0;
   }
 
   h1 {

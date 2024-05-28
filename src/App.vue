@@ -15,8 +15,8 @@ export default {
   methods: {
     // Metoda za provjeru treba li se primijeniti tranzicija za rutu
     trebaTranziciju(routeName) {
-      // Vratite false ako je ime rute 'Napredak', inače vratite true
-      return routeName !== 'Napredak' && routeName !== 'home';
+      // Vratite false ako je ime rute ..., inače vratite true
+      return routeName !== 'Napredak' && routeName !== 'home' && routeName !== 'login';
     },
     // Metoda za dobivanje imena tranzicije prema imenu rute
     napraviTranziciju(routeName) {
