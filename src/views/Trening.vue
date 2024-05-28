@@ -483,7 +483,6 @@ button:hover {
 
   .fixed-bottom {
     bottom: 0; /* Postavljanje donje trake na dno stranice */
-    min-height: 4vw;
     font-size: 1vw;
   }
   .nav-link {
@@ -504,19 +503,31 @@ button:hover {
   font-size: medium;
   padding: 0.5vw 1vw;
   width: auto;
-  margin: 1vw 1.5vw;
+  margin: 0.5vw 1.5vw;
 }
 .odjava {
   font-size: medium; 
   padding: 0.5vw 1vw;
   width: auto; /* Podešavanje širine na automatsko */
-  margin: 1vw 1.5vw;
+  margin: 0.5vw 1.5vw;
   background-color: darkgrey;
   border: none;
 }
-.navbar-toggler {
-  display: none;
-}
+.nav-item a {
+    transition: transform 0.2s ease;
+  }
+  .nav-item a.clicked {
+    transform: scale(1.15); /* Uvećavamo link kad je kliknut */
+  }
+
+  .navbar-nav .nav-item {
+    overflow: hidden;
+  }
+
+  table tr:hover{
+    cursor: pointer;
+  }
+
 @media (max-width: 1024px){
 
   .animacije {
@@ -524,27 +535,29 @@ button:hover {
     height: 64px;
   }
   .navbar-expand-lg .navbar-collapse {
-    flex-basis: 100%; /* Navbar se neće odmah kolapsirati na ovom breakpointu */
+    flex-basis: 100%;
     display: flex !important;
     flex-basis: auto;
     flex-grow: 1;
     overflow: hidden;
     height: auto;
   }
-  .nav-item a {
-    transition: transform 0.2s ease;
-  }
-  .nav-item a.clicked {
-    transform: scale(1.15); /* Uvećavamo link kad je kliknut */
+}
+
+@media (min-width: 800px){
+  .fixed-bottom {
+    height: 3vw;
   }
 }
 
 @media (max-width: 768px) {
   .home{
     border-radius: 1.5vw;
+    margin: 1vw 1.5vw;
   }
   .odjava{
     border-radius: 1.5vw;
+    margin: 1vw 1.5vw;
   }
   .nav-link {
   font-size: small; 
