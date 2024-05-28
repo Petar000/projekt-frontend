@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
       <div class="col-12">
         <h2 class="pitanje1">
-          1. Koji dio tijela bi htio znatno više napredovati?
+          1. Koji dio tijela bi htio znatno više unaprijediti?
         </h2>
       </div>
       <div class="col-3">

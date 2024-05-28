@@ -84,7 +84,7 @@ nav {
 
 .bg-img2{
 color:white;
-background-image: url(../src/assets/pozadina3.jpg);
+background-image: url(../src/assets/background-novi.jpg);
 background-size: cover;
 background-repeat: no-repeat;
 background-position: center center;
