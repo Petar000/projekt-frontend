@@ -485,13 +485,13 @@ button:hover {
   font-size: medium;
   padding: 0.5vw 1vw;
   width: auto;
-  margin: 0.5vw 1.5vw;
+  margin: 1vw 1.5vw;
 }
 .odjava {
   font-size: medium; 
   padding: 0.5vw 1vw;
   width: auto; /* Podešavanje širine na automatsko */
-  margin: 0.5vw 1.5vw;
+  margin: 1vw 1.5vw;
   background-color: darkgrey;
   border: none;
 }

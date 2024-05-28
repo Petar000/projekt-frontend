@@ -145,6 +145,20 @@ export default {
             prsa: null,
             nadlaktica: null,
           },
+          {
+            natkoljenica: null,
+            bokovi: null,
+            struk: null,
+            prsa: null,
+            nadlaktica: null,
+          },
+          {
+            natkoljenica: null,
+            bokovi: null,
+            struk: null,
+            prsa: null,
+            nadlaktica: null,
+          },
         ],
       },
       dohvaceneMjere: [],
@@ -318,7 +332,7 @@ h1 {
 
   h1 {
     font-size: 6.3vw;
-    margin-top: 4vw;
+    margin-top: 5vw;
     margin-bottom: 4.5vw;
   }
 
@@ -329,7 +343,7 @@ h1 {
 
   #brisanje {
     font-size: 2.8vw;
-    padding: 1.5vw;
+    padding: 1.6vw;
   }
 }
 </style>
