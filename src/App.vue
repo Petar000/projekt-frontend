@@ -125,11 +125,10 @@ p {
 
 @media (max-width: 768px) {
   .bg-img {
-    background-size: 1100px;
+    background-size: 100% 100%;
   }
   .bg-img2 {
-    background-size: 1400px;
-    background-position: left bottom;
+    height: 100%;
   }
   .trainLogo2{
     width: 28vw;
