@@ -2,7 +2,7 @@
   <div>
     <div class="navbar navbar-expand-lg navbar-dark bg-dark traka" style="padding: 0;">
       <div class="container-fluid">
-        <div class="d-flex justify-content-between align-items-center w-100">
+        <div class="d-flex justify-content-between align-items-center w-100" style="margin: 1vw 0;">
           <a @click="idiNaTrening" href="#" id="trening-povratak">Povratak na trening</a>
           <p style="font-size:small;" class="justify-content-center align-items-center"></p>
           <button class="odjava btn btn-primary btn-md" @click="idiNaLogin">Odjavi se</button>

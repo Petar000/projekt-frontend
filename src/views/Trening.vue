@@ -163,7 +163,26 @@ export default {
     this.tr2 = document.getElementById("tr2kliknut");
     this.upute = document.getElementById("uputekliknute");
     this.pokaziTrening1();
-  },
+
+// Svi linkovi unutar elemenata s klasom .nav-item
+const links = document.querySelectorAll('.nav-item a');
+
+// Dodajte event listener za svaki link
+links.forEach(link => {
+  link.addEventListener('click', function(event) {
+    // Spriječeno defaultno ponašanje linka
+    event.preventDefault();
+
+    // Dodana .clicked klasa samo kliknutom linku
+    this.classList.add('clicked');
+
+    // Postavljen timer za uklanjanje .clicked klase nakon 200ms
+    setTimeout(() => {
+      this.classList.remove('clicked');
+    }, 200);
+  });
+});
+},
 
   methods: {
     async provjeriOdgovore() {
@@ -512,8 +531,11 @@ button:hover {
     overflow: hidden;
     height: auto;
   }
-  .navbar-nav .nav-item {
-    flex: 0 0 auto; /* Poništavamo fleksibilnost linkova */
+  .nav-item a {
+    transition: transform 0.2s ease;
+  }
+  .nav-item a.clicked {
+    transform: scale(1.2); /* Uvećavamo link kad je kliknut */
   }
 }
 
