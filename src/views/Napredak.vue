@@ -1,17 +1,12 @@
 <template>
-  <div class="navbar navbar-expand-lg navbar-light traka">
-    <div class="container-fluid">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <button @click="idiNaHome" id="idihome">Naslovna stranica</button>
-          <li class="nav-item">
-            <a class="nav-link" href="#" @click="idiNaTrening()">Povratak na trening</a>
-          </li>
-        </ul>
+  <div>
+    <div class="navbar navbar-expand-lg navbar-dark bg-dark traka" style="padding: 0;">
+      <div class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center w-100">
+          <a @click="idiNaTrening" href="#" id="trening-povratak">Povratak na trening</a>
+          <p style="font-size:small;" class="justify-content-center align-items-center"></p>
+          <button class="odjava btn btn-primary btn-md" @click="idiNaLogin">Odjavi se</button>
+        </div>
       </div>
     </div>
   </div>
@@ -227,11 +222,9 @@ export default {
     idiNaTrening() {
       this.$router.push({ name: "Trening" });
     },
-    idiNaHome() {
-      this.$router.push({ name: "home" });
-    },
-    idiNaMjere() {
-      this.$router.push({ name: "Napredak" });
+
+    idiNaLogin(){
+      this.$router.push({ name: "login" })
     },
   },
 };
@@ -257,6 +250,30 @@ table {
 .botuni {
   display: flex;
   justify-content: space-evenly;
+}
+
+.odjava {
+  font-size: medium; 
+  padding: 0.5vw 1vw;
+  width: auto; /* Podešavanje širine na automatsko */
+  margin: 0.5vw 1.5vw;
+  background-color: dimgray;
+  border: none;
+}
+.odjava:hover{
+  margin-right: 2vw;
+  color: lightgrey;
+}
+#trening-povratak {
+  width: auto;
+  white-space: nowrap;
+  font-size: medium; 
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+#trening-povratak:hover {
+  color: lightgray;
 }
 
 #brisanje {
@@ -306,13 +323,13 @@ h1 {
   }
 
   #spremanje {
-    font-size: 3vw;
-    padding: 2.2vw;
+    font-size: 2.8vw;
+    padding: 1.8vw;
   }
 
   #brisanje {
-    font-size: 3vw;
-    padding: 2vw;
+    font-size: 2.8vw;
+    padding: 1.5vw;
   }
 }
 </style>

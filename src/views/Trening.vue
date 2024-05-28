@@ -4,7 +4,7 @@
     <div class="navbar navbar-expand-lg navbar-light traka" style="background-color: lightgray; padding: 0;">
       <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center w-100">
-          <button @click="idiNaHome" class="home btn btn-primary btn-md">Naslovna stranica</button>
+          <button @click="idiNaHome" class="home btn btn-md">Naslovna stranica</button>
           <p style="font-size:small;" class="justify-content-center align-items-center"></p>
           <button class="odjava btn btn-primary btn-md" @click="idiNaLogin">Odjavi se</button>
         </div>
@@ -419,7 +419,6 @@ button {
   font-weight: bold;
   border-radius: 0.5vw;
   color: white;
-  background-color: #001bff;
 }
 
 button:hover {
@@ -445,8 +444,8 @@ button:hover {
 
 /* Stilizacija slike unutar modalnog prozora */
 .modal img {
-    max-width: 80%; /* Maksimalna širina slike unutar modaog prozora */
-    max-height: 80%; /* Maksimalna visina slike unutar modaog prozora */
+    max-width: 80%;
+    max-height: 80%;
     border-radius: 5px; /* zaobljeni rubovi slike */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* sjena oko slike */
 }
@@ -482,6 +481,7 @@ button:hover {
   overflow-x: auto; /* Dodajemo horizontalni scrollbar */
 }
 .home {
+  background-color: #137cbd;
   font-size: medium;
   padding: 0.5vw 1vw;
   width: auto;
