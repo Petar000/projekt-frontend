@@ -577,10 +577,10 @@ table tr:hover {
 
 .popup {
   position: fixed;
-  top: 40%;
-  left: 40%;
+  top: 50%;
+  left: 50%;
   border-radius: 1.5vw;
-  transform: translate(-40%, -40%);
+  transform: translate(-50%, -50%);
   background-color: #fff;
   padding: 20px;
   border: 1px solid #ccc;
