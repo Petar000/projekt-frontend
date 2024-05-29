@@ -12,25 +12,25 @@
     </div>
   </div>
   <div class="navbar navbar-expand-lg navbar-light traka fixed-bottom">
-  <div class="container-fluid">
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="#" id="tr1kliknut" @click="pokaziTrening1()">Trening 1</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" id="tr2kliknut" @click="pokaziTrening2()">Trening 2</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" id="uputekliknute" @click="pokaziUpute()">Upute za vježbanje</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" @click="idiNaMjere">Praćenje napretka</a>
-        </li>
-      </ul>
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="tr1kliknut" @click="pokaziTrening1()">Trening 1</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="tr2kliknut" @click="pokaziTrening2()">Trening 2</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="uputekliknute" @click="pokaziUpute()">Upute za vježbanje</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" @click="idiNaMjere">Praćenje napretka</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
-</div>
   <div class="container-fluid vh-90 d-flex align-items-top justify-content-center">
     <div class="container">
       <div class="row">
@@ -119,6 +119,19 @@
             napravili 10 ponavljanja, a mogli bi maksimalno napraviti 12, onda tu
             seriju ocjenjujemo s RPE 8.
           </p>
+          <p>
+            <a @click="openPopup" class="popup-link">Kako skratiti vrijeme treninga?</a>
+          </p>
+          <div v-if="popupVisible" class="popup">
+            <button @click="closePopup" class="close-btn">X</button>
+            <p id="popup-tekst">
+              Ukoliko želite optimizirati vrijeme provedeno na treningu, preporučujemo
+              implementaciju superserija za gornji dio tijela. Superserija se definira
+              kao serija vježbi u kojoj se izvode dvije vježbe za različite mišićne
+              skupine. Primjerice, vježba za prsa i leđa jedna za drugom, nakon čega
+              slijedi odgovarajuća pauza.
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -143,7 +156,8 @@ export default {
       trening2Kliknut: false,
       uputeKliknut: false,
       modalPrikazan: false, // stanje modalnog prozora
-    modalniSadrzaj: "",
+      modalniSadrzaj: "",
+      popupVisible: false,
     };
   },
   mounted() {
@@ -164,25 +178,25 @@ export default {
     this.upute = document.getElementById("uputekliknute");
     this.pokaziTrening1();
 
-// Svi linkovi unutar elemenata s klasom .nav-item
-const links = document.querySelectorAll('.nav-item a');
+    // Svi linkovi unutar elemenata s klasom .nav-item
+    const links = document.querySelectorAll('.nav-item a');
 
-// Dodajte event listener za svaki link
-links.forEach(link => {
-  link.addEventListener('click', function(event) {
-    // Spriječeno defaultno ponašanje linka
-    event.preventDefault();
+    // Dodajte event listener za svaki link
+    links.forEach(link => {
+      link.addEventListener('click', function (event) {
+        // Spriječeno defaultno ponašanje linka
+        event.preventDefault();
 
-    // Dodana .clicked klasa samo kliknutom linku
-    this.classList.add('clicked');
+        // Dodana .clicked klasa samo kliknutom linku
+        this.classList.add('clicked');
 
-    // Postavljen timer za uklanjanje .clicked klase nakon 200ms
-    setTimeout(() => {
-      this.classList.remove('clicked');
-    }, 200);
-  });
-});
-},
+        // Postavljen timer za uklanjanje .clicked klase nakon 200ms
+        setTimeout(() => {
+          this.classList.remove('clicked');
+        }, 200);
+      });
+    });
+  },
 
   methods: {
     async provjeriOdgovore() {
@@ -354,28 +368,35 @@ links.forEach(link => {
       this.$router.push({ name: "Napredak" });
     },
 
-    idiNaLogin(){
+    idiNaLogin() {
       this.$router.push({ name: "login" })
     },
 
     prikaziPovecanuSliku1(slika, index) {
-  console.log('ovo je index ', index);
-  console.log('vrijednost slike ', slika);
-  console.log('treningProgram1', this.treningProgram1)
-  this.modalniSadrzaj = this.treningProgram1[index].slika;
-  this.modalPrikazan = true;
-  },
-  zatvoriModal() {
-  this.modalPrikazan = false;
-  },
+      console.log('ovo je index ', index);
+      console.log('vrijednost slike ', slika);
+      console.log('treningProgram1', this.treningProgram1)
+      this.modalniSadrzaj = this.treningProgram1[index].slika;
+      this.modalPrikazan = true;
+    },
+    zatvoriModal() {
+      this.modalPrikazan = false;
+    },
 
-  prikaziPovecanuSliku2(slika, index) {
-  this.modalniSadrzaj = this.treningProgram2[index].slika;
-  this.modalPrikazan = true; 
-  },
-  zatvoriModal() {
-  this.modalPrikazan = false;
-  },
+    prikaziPovecanuSliku2(slika, index) {
+      this.modalniSadrzaj = this.treningProgram2[index].slika;
+      this.modalPrikazan = true;
+    },
+    zatvoriModal() {
+      this.modalPrikazan = false;
+    },
+
+    openPopup() {
+      this.popupVisible = true;
+    },
+    closePopup() {
+      this.popupVisible = false;
+    }
   }
 };
 </script>
@@ -385,7 +406,7 @@ table {
   border-collapse: collapse;
   width: 100%;
   margin-bottom: 4vw;
-  box-shadow: 0px 0px 10px #888;
+  box-shadow: 0px 0px 10px 3px #888;
 }
 
 .upute-tekst {
@@ -413,7 +434,7 @@ tbody tr:nth-child(odd) {
   background-color: #f2f2f2;
 }
 
-#glavni-naslov{
+#glavni-naslov {
   font-size: 3vw;
 }
 
@@ -449,55 +470,65 @@ button:hover {
 }
 
 .modal {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* poluprozirni overlay */
-    z-index: 1000; /* visok indeks z-ordera da bi bio iznad ostalog sadržaja */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* poluprozirni overlay */
+  z-index: 1000;
+  /* visok indeks z-ordera da bi bio iznad ostalog sadržaja */
 }
 
 /* Stilizacija slike unutar modalnog prozora */
 .modal img {
-    max-width: 80%;
-    max-height: 80%;
-    border-radius: 5px; /* zaobljeni rubovi slike */
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* sjena oko slike */
+  max-width: 80%;
+  max-height: 80%;
+  border-radius: 7px;
+  /* zaobljeni rubovi slike */
+  box-shadow: 0 0 20px 4px rgba(0, 0, 0, 0.5);
+  /* sjena oko slike */
 }
 
 .navbar {
-    padding: 1vw 2vw;
-  }
+  padding: 1vw 2vw;
+}
 
-  .btn {
-    width: auto !important; /* Vraćanje širine na auto */
-  }
+.btn {
+  width: auto !important;
+  /* Vraćanje širine na auto */
+}
 
-  .traka {
-    border-radius: 0; /* Uklanjanje zaobljenih rubova */
-  }
+.traka {
+  border-radius: 0;
+  /* Uklanjanje zaobljenih rubova */
+}
 
-  .fixed-bottom {
-    bottom: 0; /* Postavljanje donje trake na dno stranice */
-    font-size: 1vw;
-  }
-  .nav-link {
+.fixed-bottom {
+  bottom: 0;
+  /* Postavljanje donje trake na dno stranice */
+  font-size: 1vw;
+}
+
+.nav-link {
   width: auto;
   white-space: nowrap;
-  font-size: medium; 
+  font-size: medium;
 }
+
 .navbar-nav {
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   flex-wrap: nowrap;
-  overflow-x: auto; /* Dodajemo horizontalni scrollbar */
+  overflow-x: auto;
 }
+
 .home {
   background-color: darkgray;
   font-size: medium;
@@ -505,35 +536,81 @@ button:hover {
   width: auto;
   margin: 0.5vw 1.5vw;
 }
+
 .odjava {
-  font-size: medium; 
+  font-size: medium;
   padding: 0.5vw 1vw;
-  width: auto; /* Podešavanje širine na automatsko */
+  width: auto;
+  /* Podešavanje širine na automatsko */
   margin: 0.5vw 1.5vw;
   background-color: darkgrey;
   border: none;
 }
+
 .nav-item a {
-    transition: transform 0.2s ease;
-  }
-  .nav-item a.clicked {
-    transform: scale(1.15); /* Uvećavamo link kad je kliknut */
-  }
+  transition: transform 0.2s ease;
+}
 
-  .navbar-nav .nav-item {
-    overflow: hidden;
-  }
+.nav-item a.clicked {
+  transform: scale(1.15);
+  /* Uvećavamo link kad je kliknut */
+}
 
-  table tr:hover{
-    cursor: pointer;
-  }
+.navbar-nav .nav-item {
+  overflow: hidden;
+}
 
-@media (max-width: 1024px){
+table tr:hover {
+  cursor: pointer;
+}
+
+.popup-link {
+  cursor: pointer;
+  color: #137cbd;
+  font-size: 2.2vw;
+  text-decoration: underline;
+}
+
+.popup-link:hover {
+  color: #2da6e8;
+}
+
+.popup {
+  position: fixed;
+  top: 40%;
+  left: 40%;
+  border-radius: 1.5vw;
+  transform: translate(-40%, -40%);
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.3);
+  z-index: 999;
+}
+
+#popup-tekst {
+  font-size: 1.8vw;
+}
+
+.close-btn {
+  position: absolute;
+  padding: 0 0.4vw;
+  top: 0.5vw;
+  right: 0.6vw;
+  background: #137cbd;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 2vw;
+}
+
+@media (max-width: 1024px) {
 
   .animacije {
     width: 95px;
     height: 64px;
   }
+
   .navbar-expand-lg .navbar-collapse {
     flex-basis: 100%;
     display: flex !important;
@@ -544,29 +621,38 @@ button:hover {
   }
 }
 
-@media (min-width: 800px){
+@media (min-width: 800px) {
   .fixed-bottom {
     height: 3vw;
   }
 }
 
 @media (max-width: 768px) {
-  .home{
-    border-radius: 1.5vw;
-    margin: 1vw 1.5vw;
+  #navbarNav {
+    height: 8vw;
+    bottom: 0;
   }
-  .odjava{
+
+  .home {
     border-radius: 1.5vw;
-    margin: 1vw 1.5vw;
+    margin: 1.2vw 1.5vw;
   }
+
+  .odjava {
+    border-radius: 1.5vw;
+    margin: 1.2vw 1.5vw;
+  }
+
   .nav-link {
-  font-size: small; 
-}
-  .navbar-nav{
+    font-size: small;
+  }
+
+  .navbar-nav {
     flex-direction: row;
     justify-content: space-around;
     width: 100%;
   }
+
   .navbar-nav .nav-item {
     flex: 1 1 auto;
     text-align: center;
@@ -579,9 +665,9 @@ button:hover {
     margin-bottom: 6vw;
   }
 
-  #glavni-naslov{
-  font-size: 7vw;
-}
+  #glavni-naslov {
+    font-size: 7vw;
+  }
 
   .upute-tekst {
     font-size: 3.5vw;
@@ -603,5 +689,19 @@ button:hover {
   td {
     font-size: 2.5vw;
   }
+
+  .popup-link {
+    font-size: 3.4vw;
+  }
+  #popup-tekst {
+    font-size: 3vw;
+  }
+  .close-btn {
+  padding: 0.5vw 1.2vw;
+  top: 0.7vw;
+  right: 0.8vw;
+  font-size: 3vw;
+  border-radius: 1vw;
+}
 }
 </style>

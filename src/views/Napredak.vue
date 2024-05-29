@@ -2,7 +2,7 @@
   <div>
     <div class="navbar navbar-expand-lg navbar-dark traka" style="padding: 0; background-color: #444;">
       <div class="container-fluid">
-        <div class="d-flex justify-content-between align-items-center w-100" style="margin: 1vw 0;">
+        <div class="d-flex justify-content-between align-items-center w-100 gornji-botuni" style="margin: 1vw 0;">
           <a @click="idiNaTrening" href="#" id="trening-povratak">Povratak na trening</a>
           <p style="font-size:small;" class="justify-content-center align-items-center"></p>
           <button class="odjava btn btn-primary btn-md" @click="idiNaLogin">Odjavi se</button>
@@ -53,18 +53,22 @@
               </div>
             </div>
           </div>
+          <div class="botuni-kontenjer">
           <div class="botuni">
             <button @click="spremiMjere" class="btn btn-primary" id="spremanje">
               Spremi mjere
             </button>
+          </div>
+          <div class="botuni">
             <button @click="izbrisiMjere" class="btn btn-danger" id="brisanje">
               Izbriši podatke o napretku
             </button>
           </div>
+          </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -167,7 +171,26 @@ export default {
   mounted() {
     console.log('sessionId vrijednost: ', this.$sessionId)
     this.dohvatiMjere();
-  },
+
+  // Odaberite sve botune unutar elemenata s klasom .botuni
+  const botuni = document.querySelectorAll('.botuni');
+
+// Dodajte event listener za svaki link
+botuni.forEach(botun => {
+  botun.addEventListener('click', function(event) {
+    // Spriječite defaultno ponašanje botuna
+    event.preventDefault();
+
+    // Dodajte .clicked klasu samo kliknutom botunu
+    this.classList.add('clicked');
+
+    // Postavite timer za uklanjanje .clicked klase nakon 200ms
+    setTimeout(() => {
+      this.classList.remove('clicked');
+    }, 200);
+  });
+});
+},
 
   methods: {
     async izbrisiMjere() {
@@ -261,11 +284,15 @@ table {
   box-sizing: border-box;
 }
 
-.botuni {
+.botuni-kontenjer {
+  margin-bottom: 1vw;
   display: flex;
   justify-content: space-evenly;
 }
-
+  .botuni.clicked {
+    transform: scale(1.15); /* Uvećavamo link kad je kliknut */
+    transition: transform 0.2s ease;
+  }
 .odjava {
   font-size: medium; 
   padding: 0.5vw 1vw;
@@ -288,6 +315,9 @@ table {
 }
 #trening-povratak:hover {
   color: lightgray;
+}
+.gornji-botuni{
+  height: 2vw;
 }
 
 #brisanje {
@@ -345,5 +375,11 @@ h1 {
     font-size: 2.8vw;
     padding: 1.6vw;
   }
+  .botuni-kontenjer {
+  margin-bottom: 2vw;
+}
+.gornji-botuni{
+  height: 8vw;
+}
 }
 </style>
