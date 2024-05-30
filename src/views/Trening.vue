@@ -126,9 +126,11 @@
             <button @click="closePopup" class="close-btn">X</button>
             <p id="popup-tekst">
               Ukoliko želite optimizirati vrijeme provedeno na treningu, preporučujemo
-              implementaciju superserija za gornji dio tijela. Superserija se definira
-              kao serija vježbi u kojoj se izvode dvije vježbe za različite mišićne
-              skupine. Primjerice, vježba za prsa i leđa jedna za drugom, nakon čega
+              implementaciju superserija za gornji dio tijela. 
+              Superserija se definira kao serija vježbi u kojoj se izvode dvije vježbe za različite mišićne
+              skupine. 
+              <br> <br>
+              Primjerice, vježba za prsa i leđa jedna za drugom, nakon čega
               slijedi odgovarajuća pauza.
             </p>
           </div>

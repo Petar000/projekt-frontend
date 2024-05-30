@@ -14,7 +14,7 @@
                     <form>
                       <p class="text-center mb-3">Prijavite se na svoj račun</p>
                       <div data-mdb-input-init class="form-outline mb-3">
-                        <input type="email" class="form-control" placeholder="Korisničko ime" />
+                        <input type="email" class="form-control" placeholder="Email" />
                       </div>
                       <div data-mdb-input-init class="form-outline mb-4">
                         <input type="password" class="form-control" placeholder="Lozinka" />

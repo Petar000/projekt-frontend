@@ -14,13 +14,16 @@
                     <form>
                       <p class="text-center mb-3">Izradi korisnički račun</p>
                       <div data-mdb-input-init class="form-outline mb-3">
-                        <input type="email" class="form-control" placeholder="Korisničko ime" />
+                        <input type="email" v-model="username" class="form-control" placeholder="Email" />
                       </div>
                       <div data-mdb-input-init class="form-outline mb-3">
-                        <input type="password" class="form-control" placeholder="Nova lozinka" />
+                        <input type="password" v-model="password" class="form-control" placeholder="Nova lozinka" />
+                      </div>
+                      <div data-mdb-input-init class="form-outline mb-3">
+                        <input type="password" v-model="passwordRepeat" class="form-control" placeholder="Ponovi lozinku" />
                       </div>
                       <div class="text-center pt-1 mb-2">
-                        <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block gradient-custom-2 mb-3" type="button" @click="idiNaHome">Registracija</button>
+                        <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block gradient-custom-2 mb-3" type="button" @click="signup">Registracija</button>
                       </div>
                       <div class="d-flex align-items-center justify-content-center pb-4">
                         <p class="mb-0 me-2" style="font-size: medium; opacity: 0.8;">Već imate račun?</p>
@@ -46,7 +49,18 @@
   
   <script>
   export default {
+    data() {
+      return {
+        username: '',
+        password: '',
+        passwordRepeat: '',
+      };
+    },
+
     methods: {
+      signup() {
+        alert(this.username);
+      },
       idiNaHome() {
         this.$router.push({ name: "home" });
       },
