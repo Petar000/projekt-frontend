@@ -5,7 +5,7 @@
         <div class="d-flex justify-content-between align-items-center w-100 gornji-botuni" style="margin: 1vw 0;">
           <a @click="idiNaTrening" href="#" id="trening-povratak">Povratak na trening</a>
           <p style="font-size:small;" class="justify-content-center align-items-center"></p>
-          <button class="odjava btn btn-primary btn-md" @click="idiNaLogin">Odjavi se</button>
+          <button class="odjava btn btn-primary btn-md" @click="Odjavi">Odjavi se</button>
         </div>
       </div>
     </div>
@@ -73,6 +73,9 @@
 
 <script>
 import axios from "axios";
+import { auth } from './firebase'
+import { signOut } from "firebase/auth";
+
 export default {
   data() {
     return {
@@ -260,8 +263,11 @@ botuni.forEach(botun => {
       this.$router.push({ name: "Trening" });
     },
 
-    idiNaLogin(){
-      this.$router.push({ name: "login" })
+    Odjavi() {
+      auth.signOut()
+        .then(() => {
+          this.$router.replace({ name: "login" });
+        });
     },
   },
 };

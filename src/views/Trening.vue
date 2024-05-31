@@ -6,7 +6,7 @@
         <div class="d-flex justify-content-between align-items-center w-100">
           <button @click="idiNaHome" class="home btn btn-md">Naslovna stranica</button>
           <p style="font-size:small;" class="justify-content-center align-items-center"></p>
-          <button class="odjava btn btn-primary btn-md" @click="idiNaLogin">Odjavi se</button>
+          <button class="odjava btn btn-primary btn-md" @click="Odjavi">Odjavi se</button>
         </div>
       </div>
     </div>
@@ -126,9 +126,9 @@
             <button @click="closePopup" class="close-btn">X</button>
             <p id="popup-tekst">
               Ukoliko želite optimizirati vrijeme provedeno na treningu, preporučujemo
-              implementaciju superserija za gornji dio tijela. 
+              implementaciju superserija za gornji dio tijela.
               Superserija se definira kao serija vježbi u kojoj se izvode dvije vježbe za različite mišićne
-              skupine. 
+              skupine.
               <br> <br>
               Primjerice, vježba za prsa i leđa jedna za drugom, nakon čega
               slijedi odgovarajuća pauza.
@@ -144,6 +144,8 @@
 </template>
 
 <script>
+import { auth } from './firebase'
+import { signOut } from "firebase/auth";
 import axios from "axios";
 
 export default {
@@ -370,10 +372,6 @@ export default {
       this.$router.push({ name: "Napredak" });
     },
 
-    idiNaLogin() {
-      this.$router.push({ name: "login" })
-    },
-
     prikaziPovecanuSliku1(slika, index) {
       console.log('ovo je index ', index);
       console.log('vrijednost slike ', slika);
@@ -398,7 +396,14 @@ export default {
     },
     closePopup() {
       this.popupVisible = false;
-    }
+    },
+
+    Odjavi() {
+      auth.signOut()
+        .then(() => {
+          this.$router.replace({ name: "login" });
+        });
+    },
   }
 };
 </script>
@@ -695,15 +700,17 @@ table tr:hover {
   .popup-link {
     font-size: 3.4vw;
   }
+
   #popup-tekst {
     font-size: 3vw;
   }
+
   .close-btn {
-  padding: 0.5vw 1.2vw;
-  top: 0.7vw;
-  right: 0.8vw;
-  font-size: 3vw;
-  border-radius: 1vw;
-}
+    padding: 0.5vw 1.2vw;
+    top: 0.7vw;
+    right: 0.8vw;
+    font-size: 3vw;
+    border-radius: 1vw;
+  }
 }
 </style>

@@ -10,8 +10,38 @@
 </template>
 
 <script>
+import { auth } from './views/firebase';
+import { onAuthStateChanged } from 'firebase/auth';
+import store from './views/store';
+import { signOut } from "firebase/auth";
+import router from './router';
+
 export default {
   name: 'App',
+  mounted() {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // Korisnik je prijavljen
+        console.log('Korisnik je prijavljen:', user.email);
+        store.currentUser = user.email;
+      } else {
+        // Korisnik je odjavljen
+        console.log('Korisnik je odjavljen.');
+        store.currentUser = null;
+
+        if (router.name !== 'login'){
+          router.push({ name: 'login' });
+        }
+      }
+    });
+  },
+
+  data(){
+    return {
+      store,
+    };
+  },
+
   methods: {
     // Metoda za provjeru treba li se primijeniti tranzicija za rutu
     trebaTranziciju(routeName) {
@@ -35,18 +65,24 @@ export default {
 
 <style lang="scss">
 /* Fade Transition */
-.fade-enter-active, .fade-leave-active {
+.fade-enter-active,
+.fade-leave-active {
   transition: opacity 0.5s;
 }
-.fade-enter, .fade-leave-to {
+
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
 
 /* Slide Transition */
-.slide-enter-active, .slide-leave-active {
+.slide-enter-active,
+.slide-leave-active {
   transition: transform 0.5s;
 }
-.slide-enter, .slide-leave-to {
+
+.slide-enter,
+.slide-leave-to {
   transform: translateX(-100%);
 }
 
@@ -58,12 +94,13 @@ export default {
   color: #2c3e50;
 }
 
-button:hover{
+button:hover {
   color: lightgrey;
 }
 
 nav {
   padding: 30px;
+
   a {
     font-weight: bold;
     color: #2c3e50;
@@ -74,20 +111,20 @@ nav {
   }
 }
 
-.trainLogo2{
+.trainLogo2 {
   width: 12vw;
   position: absolute;
   top: 0;
   left: 0;
   padding: 0 !important;
-  }
+}
 
-.bg-img2{
-color:white;
-background-image: url(../src/assets/background-novi.jpg);
-background-size: cover;
-background-repeat: no-repeat;
-background-position: center center;
+.bg-img2 {
+  color: white;
+  background-image: url(../src/assets/background-novi.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 button {
@@ -105,20 +142,22 @@ p {
   font-size: 2.8vw;
 }
 
-.traka{
+.traka {
   background-color: #2B2B2B;
 }
 
-.nav-link{
+.nav-link {
   font-weight: bold;
 }
 
 .navbar-light .navbar-nav .nav-link {
   color: #ffffff;
 }
+
 .navbar-light .navbar-nav .nav-link:hover {
   color: lightgray;
 }
+
 #idihome:hover {
   color: lightgrey;
 }
@@ -127,16 +166,18 @@ p {
   .bg-img {
     background-size: 100% 100%;
   }
+
   .bg-img2 {
     height: 100%;
   }
-  .trainLogo2{
+
+  .trainLogo2 {
     width: 28vw;
   }
-  p{
+
+  p {
     font-size: 5vw;
   }
-}
-</style>
+}</style>
 
 
