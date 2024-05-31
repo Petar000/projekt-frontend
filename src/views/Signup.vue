@@ -14,7 +14,7 @@
                   <form>
                     <p class="text-center mb-3">Izradi korisnički račun</p>
                     <div data-mdb-input-init class="form-outline mb-3">
-                      <input type="email" v-model="username" class="form-control" placeholder="Email" />
+                      <input type="email" v-model="username" class="form-control" placeholder="Email (ili ime u formi email-a)" />
                     </div>
                     <div data-mdb-input-init class="form-outline mb-3">
                       <input type="password" v-model="password" class="form-control" placeholder="Nova lozinka" />
