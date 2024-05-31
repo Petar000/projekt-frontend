@@ -84,7 +84,6 @@ export default {
             })
             .catch((error) => {
               console.error("Došlo je do greške ", error);
-              this.errorMessage = 'Email se već koristi.';
             });
         } else {
           this.errorMessage = 'Lozinka treba imati barem 6 znakova.';
@@ -179,7 +178,7 @@ h4 {
   /* Dodatni stil za mobilne uređaje */
   .dodatni-dizajn {
     background-color: #2da6e8;
-    height: 60px;
+    height: 30px;
   }
 }
 </style>

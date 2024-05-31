@@ -161,6 +161,6 @@ h4 {
   /* Dodatni stil za mobilne uređaje */
   .dodatni-dizajn {
     background-color: #2da6e8;
-    height: 60px;
+    height: 30px;
   }
 }</style>

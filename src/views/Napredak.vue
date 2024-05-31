@@ -75,12 +75,13 @@
 import axios from "axios";
 import { auth } from './firebase'
 import { signOut } from "firebase/auth";
+import store from './store'
 
 export default {
   data() {
     return {
       mjere: {
-        sessionId: this.$sessionId,
+        user: store.currentUser,
         objekti: [
           {
             natkoljenica: null,
@@ -172,7 +173,7 @@ export default {
     };
   },
   mounted() {
-    console.log('sessionId vrijednost: ', this.$sessionId)
+    console.log('korisnik: ', store.currentUser)
     this.dohvatiMjere();
 
   // Odaberite sve botune unutar elemenata s klasom .botuni
@@ -207,7 +208,7 @@ botuni.forEach(botun => {
       try {
         const response = await axios.delete("https://learntotrain-backend.onrender.com/izbrisisve", {
           params: {
-            sessionId: this.$sessionId
+            user: store.currentUser
           }
         });
         console.log(response.data);
@@ -234,7 +235,7 @@ botuni.forEach(botun => {
       try {
         const response = await axios.get("https://learntotrain-backend.onrender.com/mjere", {
           params: {
-            sessionId: this.$sessionId
+            user: store.currentUser
           }
         });
         this.dohvaceneMjere = response.data;
