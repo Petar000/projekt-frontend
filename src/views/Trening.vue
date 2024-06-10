@@ -339,6 +339,42 @@ export default {
       }
     },
 
+    async dohvatiFullBodyKuci() {
+      try {
+        const response = await axios.get(
+          "https://learntotrain-backend.onrender.com/fullbody-kuci"
+        );
+        this.treningProgram1 = response.data;
+        console.log(this.treningProgram1);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    async dohvatiLowerBodyKuci() {
+      try {
+        const response = await axios.get(
+          "https://learntotrain-backend.onrender.com/lowerbody-kuci"
+        );
+        this.treningProgram1 = response.data;
+        console.log(this.treningProgram1);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    async dohvatiUpperBodyKuci() {
+      try {
+        const response = await axios.get(
+          "https://learntotrain-backend.onrender.com/upperbody-kuci"
+        );
+        this.treningProgram1 = response.data;
+        console.log(this.treningProgram1);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
     async pokaziTrening1() {
       this.trening1Kliknut = true;
       this.trening2Kliknut = false;
