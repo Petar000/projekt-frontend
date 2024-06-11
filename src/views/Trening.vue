@@ -18,11 +18,19 @@
           <li class="nav-item">
             <a class="nav-link" href="#" id="tr1kliknut" @click="pokaziTrening1()">Trening 1</a>
           </li>
+          <div v-if="odgovori.prviOdgovor !== 'Kod kuće' || odgovori.treciOdgovor !== '3'">
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="tr2kliknut" @click="pokaziTrening2()">Trening 2</a>
+            </li>
+          </div>
+          <div
+            v-if="(odgovori.prviOdgovor === 'Kod kuće' && odgovori.treciOdgovor === '4' && odgovori.drugiOdgovor !== 'Podjednako') || (odgovori.prviOdgovor === 'Kod kuće' && odgovori.drugiOdgovor === 'Podjednako' && odgovori.treciOdgovor === '5')">
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="tr3kliknut" @click="pokaziTrening3()">Trening 3</a>
+            </li>
+          </div>
           <li class="nav-item">
-            <a class="nav-link" href="#" id="tr2kliknut" @click="pokaziTrening2()">Trening 2</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" id="uputekliknute" @click="pokaziUpute()">Upute za vježbanje</a>
+            <a class="nav-link" href="#" id="uputekliknute" @click="pokaziUpute()">Upute</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#" @click="idiNaMjere">Praćenje napretka</a>
@@ -96,6 +104,36 @@
                 </tbody>
               </table>
             </div>
+            <div v-if="trening3Kliknut">
+              <h1>{{ putaTjedno3 }}</h1>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Ime vježbe</th>
+                    <th>Broj serija</th>
+                    <th>Broj ponavljanja</th>
+                    <th>RPE</th>
+                    <th>Izvedba vježbe</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <template v-for="(vježba, index) in treningProgram3" :key="vježba.ime">
+                    <tr v-if="vježba.serija !== undefined">
+                      <td @click="() => prikaziPovecanuSliku3(vježba.slika, index)">{{ vježba.ime }}</td>
+                      <td @click="() => prikaziPovecanuSliku3(vježba.slika, index)">{{ vježba.serija }}</td>
+                      <td @click="() => prikaziPovecanuSliku3(vježba.slika, index)">
+                        {{ vježba.min_ponavljanja }} -
+                        {{ vježba.max_ponavljanja }}
+                      </td>
+                      <td @click="() => prikaziPovecanuSliku3(vježba.slika, index)">{{ vježba.rpe }}</td>
+                      <td @click="() => prikaziPovecanuSliku3(vježba.slika, index)">
+                        <img :src="vježba.slika" alt="Animacija vježbe" class="animacije" />
+                      </td>
+                    </tr>
+                  </template>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
@@ -147,14 +185,18 @@
 import { auth } from './firebase'
 import { signOut } from "firebase/auth";
 import axios from "axios";
+import { odgovori } from './Pitanja.vue';
 
 export default {
   data() {
     return {
       treningProgram1: {}, //prvi koji ce se prikazati
       treningProgram2: {}, // drugi koji ce se prikazati
+      treningProgram3: {}, // treci koji ce se mozda prikazati
+      odgovori,
       putaTjedno1: "",
       putaTjedno2: "",
+      putaTjedno3: "",
       mojiOdgovori: "",
       trening1Kliknut: false, //u metodi na kraju se postavlja u true ovisno sta se klikne
       trening2Kliknut: false,
@@ -179,6 +221,7 @@ export default {
 
     this.tr1 = document.getElementById("tr1kliknut");
     this.tr2 = document.getElementById("tr2kliknut");
+    this.tr3 = document.getElementById("tr3kliknut");
     this.upute = document.getElementById("uputekliknute");
     this.pokaziTrening1();
 
@@ -210,7 +253,7 @@ export default {
             console.log(
               "evo dosli odgovori",
               this.mojiOdgovori,
-              this.mojiOdgovori.drugiOdgovor
+              this.mojiOdgovori.treciOdgovor
             );
             clearInterval(checkMojiOdgovori);
             resolve();
@@ -220,41 +263,102 @@ export default {
 
       const prviOdgovor = this.mojiOdgovori[0].prviOdgovor;
       const drugiOdgovor = this.mojiOdgovori[0].drugiOdgovor;
+      const treciOdgovor = this.mojiOdgovori[0].treciOdgovor;
 
-      if (drugiOdgovor === "2") {
-        await this.dohvatiFullBody1();
-        await this.dohvatiFullBody2();
-        this.putaTjedno1 = "1xtjedno Full Body A";
-        this.putaTjedno2 = "1xtjedno Full Body B";
-      } else if (drugiOdgovor === "3") {
-        if (prviOdgovor === "Podjednako") {
-          this.putaTjedno1 = "2xtjedno Full Body A";
-          this.putaTjedno2 = "1xtjedno Full Body B";
+      if (prviOdgovor === "U teretani") {
+        if (treciOdgovor === "2") {
           await this.dohvatiFullBody1();
           await this.dohvatiFullBody2();
-        } else if (prviOdgovor === "Trup") {
+          this.putaTjedno1 = "1xtjedno Full Body A";
+          this.putaTjedno2 = "1xtjedno Full Body B";
+        } else if (treciOdgovor === "3") {
+          if (drugiOdgovor === "Podjednako") {
+            this.putaTjedno1 = "2xtjedno Full Body A";
+            this.putaTjedno2 = "1xtjedno Full Body B";
+            await this.dohvatiFullBody1();
+            await this.dohvatiFullBody2();
+          } else if (drugiOdgovor === "Trup") {
+            this.putaTjedno1 = "1xtjedno Lower Body";
+            this.putaTjedno2 = "2xtjedno Upper Body";
+            await this.dohvatiLowerBody();
+            await this.dohvatiUpperBody();
+          } else if (drugiOdgovor === "Donji dio") {
+            this.putaTjedno1 = "2xtjedno Lower Body";
+            this.putaTjedno2 = "1xtjedno Upper Body";
+            await this.dohvatiLowerBody();
+            await this.dohvatiUpperBody();
+          }
+        } else if (treciOdgovor === "4") {
+          this.putaTjedno1 = "2xtjedno Lower Body";
+          this.putaTjedno2 = "2xtjedno Upper Body";
+          if (drugiOdgovor === "Podjednako") {
+            await this.dohvatiLowerBody();
+            await this.dohvatiUpperBody();
+          } else if (drugiOdgovor === "Trup") {
+            await this.dohvatiLowerBodyViseGornji();
+            await this.dohvatiUpperBodyViseGornji();
+          } else if (drugiOdgovor === "Donji dio") {
+            await this.dohvatiLowerBodyViseDonji();
+            await this.dohvatiUpperBodyViseDonji();
+          }
+        }
+
+      } else if (treciOdgovor === "3") {
+        if (drugiOdgovor === "Podjednako") {
+          this.putaTjedno1 = "3xtjedno Full Body";
+          await this.dohvatiFullBodyKuci();
+        } else if (drugiOdgovor === "Trup") {
           this.putaTjedno1 = "1xtjedno Lower Body";
           this.putaTjedno2 = "2xtjedno Upper Body";
-          await this.dohvatiLowerBody();
-          await this.dohvatiUpperBody();
-        } else if (prviOdgovor === "Donji dio") {
+          await this.dohvatiLowerBodyKuci();
+          await this.dohvatiUpperBodyKuci();
+        } else if (drugiOdgovor === "Donji dio") {
           this.putaTjedno1 = "2xtjedno Lower Body";
           this.putaTjedno2 = "1xtjedno Upper Body";
-          await this.dohvatiLowerBody();
-          await this.dohvatiUpperBody();
+          await this.dohvatiLowerBodyKuci();
+          await this.dohvatiUpperBodyKuci();
         }
-      } else if (drugiOdgovor === "4") {
-        this.putaTjedno1 = "2xtjedno Lower Body";
-        this.putaTjedno2 = "2xtjedno Upper Body";
-        if (prviOdgovor === "Podjednako") {
-          await this.dohvatiLowerBody();
-          await this.dohvatiUpperBody();
-        } else if (prviOdgovor === "Trup") {
-          await this.dohvatiLowerBodyViseGornji();
-          await this.dohvatiUpperBodyViseGornji();
-        } else if (prviOdgovor === "Donji dio") {
-          await this.dohvatiLowerBodyViseDonji();
-          await this.dohvatiUpperBodyViseDonji();
+      } else if (treciOdgovor === "4") {
+        if (drugiOdgovor === "Podjednako") {
+          this.putaTjedno1 = "2xtjedno Lower Body";
+          this.putaTjedno2 = "2xtjedno Upper Body";
+          await this.dohvatiLowerBodyKuci();
+          await this.dohvatiUpperBodyKuci();
+        } else if (drugiOdgovor === "Trup") {
+          this.putaTjedno1 = "1xtjedno Lower Body";
+          this.putaTjedno2 = "2xtjedno Upper Body";
+          this.putaTjedno3 = "1xtjedno Full Body";
+          // DODAT I 1xtjedno FULLBODY
+          await this.dohvatiLowerBodyKuci();
+          await this.dohvatiUpperBodyKuci();
+          await this.dohvatiFullBodyKuci();
+        } else if (drugiOdgovor === "Donji dio") {
+          this.putaTjedno1 = "2xtjedno Lower Body";
+          this.putaTjedno2 = "1xtjedno Upper Body";
+          this.putaTjedno3 = "1xtjedno Full Body";
+          // DODAT I 1xtjedno FULLBODY
+          await this.dohvatiLowerBodyKuci();
+          await this.dohvatiUpperBodyKuci();
+          await this.dohvatiFullBodyKuci();
+        }
+      } else if (treciOdgovor === "5") {
+        if (drugiOdgovor === "Podjednako") {
+          this.putaTjedno1 = "2xtjedno Lower Body";
+          this.putaTjedno2 = "2xtjedno Upper Body";
+          this.putaTjedno3 = "1xtjedno Full Body";
+          await this.dohvatiLowerBodyKuci();
+          await this.dohvatiUpperBodyKuci();
+          await this.dohvatiFullBodyKuci();
+        } else if (drugiOdgovor === "Trup") {
+          this.putaTjedno1 = "2xtjedno Lower Body";
+          this.putaTjedno2 = "3xtjedno Upper Body";
+          await this.dohvatiLowerBodyKuci();
+          await this.dohvatiUpperBodyKuci();
+        } else if (drugiOdgovor === "Donji dio") {
+          this.putaTjedno1 = "3xtjedno Lower Body";
+          this.putaTjedno2 = "2xtjedno Upper Body";
+          await this.dohvatiLowerBodyKuci();
+          await this.dohvatiUpperBodyKuci();
         }
       }
     },
@@ -344,8 +448,13 @@ export default {
         const response = await axios.get(
           "https://learntotrain-backend.onrender.com/fullbody-kuci"
         );
-        this.treningProgram1 = response.data;
-        console.log(this.treningProgram1);
+        if (odgovori.treciOdgovor === "3") {
+          this.treningProgram1 = response.data;
+          console.log(this.treningProgram1);
+        } else {
+          this.treningProgram3 = response.data;
+          console.log(this.treningProgram3);
+        }
       } catch (error) {
         console.log(error);
       }
@@ -368,7 +477,7 @@ export default {
         const response = await axios.get(
           "https://learntotrain-backend.onrender.com/upperbody-kuci"
         );
-        this.treningProgram1 = response.data;
+        this.treningProgram2 = response.data;
         console.log(this.treningProgram1);
       } catch (error) {
         console.log(error);
@@ -378,17 +487,31 @@ export default {
     async pokaziTrening1() {
       this.trening1Kliknut = true;
       this.trening2Kliknut = false;
+      this.trening3Kliknut = false;
       this.uputeKliknut = false;
       this.tr1.style.color = "gray";
       this.tr2.style.color = "";
+      this.tr3.style.color = "";
       this.upute.style.color = "";
     },
     async pokaziTrening2() {
       this.trening1Kliknut = false;
       this.trening2Kliknut = true;
+      this.trening3Kliknut = false;
       this.uputeKliknut = false;
       this.tr2.style.color = "gray";
       this.tr1.style.color = "";
+      this.tr3.style.color = "";
+      this.upute.style.color = "";
+    },
+    async pokaziTrening3() {
+      this.trening1Kliknut = false;
+      this.trening2Kliknut = false;
+      this.trening3Kliknut = true;
+      this.uputeKliknut = false;
+      this.tr3.style.color = "gray";
+      this.tr1.style.color = "";
+      this.tr2.style.color = "";
       this.upute.style.color = "";
     },
     async pokaziUpute() {
@@ -423,8 +546,9 @@ export default {
       this.modalniSadrzaj = this.treningProgram2[index].slika;
       this.modalPrikazan = true;
     },
-    zatvoriModal() {
-      this.modalPrikazan = false;
+    prikaziPovecanuSliku3(slika, index) {
+      this.modalniSadrzaj = this.treningProgram3[index].slika;
+      this.modalPrikazan = true;
     },
 
     openPopup() {
