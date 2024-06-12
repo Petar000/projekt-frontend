@@ -179,8 +179,8 @@
           <h1>Upute za trening</h1>
           <p class="upute-tekst">
             Pauza između svake serije je između 1.5 i 2.5 minute - nije strogo
-            određena. Za svaku vježbu ukoliko izlazi van zadanog broja ponavljanja dodati opterećenje pomoću bučica. 
-            Cilj je svaki tjedan progresivno povećavati broj ponavljanja na vježbama u zadanom rasponu 
+            određena. Za svaku vježbu ukoliko izlazi van zadanog broja ponavljanja dodati opterećenje pomoću bučica.
+            Cilj je svaki tjedan progresivno povećavati broj ponavljanja na vježbama u zadanom rasponu
             ili dodavati opterećenje s utezima.
           </p>
           <h2>Što je RPE?</h2>
@@ -221,6 +221,7 @@ export default {
       mojiOdgovori: "",
       trening1Kliknut: false, //u metodi na kraju se postavlja u true ovisno sta se klikne
       trening2Kliknut: false,
+      trening3Kliknut: false,
       uputeKliknut: false,
       modalPrikazan: false, // stanje modalnog prozora
       modalniSadrzaj: "",
@@ -244,6 +245,8 @@ export default {
     this.tr2 = document.getElementById("tr2kliknut");
     this.tr3 = document.getElementById("tr3kliknut");
     this.upute = document.getElementById("uputekliknute");
+    console.log("ovo su upute getelementbyid ", this.upute)
+    console.log("ovo je tr3 getelementbyid ", this.tr3)
     this.pokaziTrening1();
 
     // Svi linkovi unutar elemenata s klasom .nav-item
@@ -469,7 +472,7 @@ export default {
         const response = await axios.get(
           "https://learntotrain-backend.onrender.com/fullbody-kuci"
         );
-        if (odgovori.treciOdgovor === "3") {
+        if (odgovori.prviOdgovor === "Kod kuće" && odgovori.treciOdgovor === "3") {
           this.treningProgram1 = response.data;
           console.log(this.treningProgram1);
         } else {
@@ -511,8 +514,12 @@ export default {
       this.trening3Kliknut = false;
       this.uputeKliknut = false;
       this.tr1.style.color = "gray";
-      this.tr2.style.color = "";
-      this.tr3.style.color = "";
+      if (this.tr2) {
+        this.tr2.style.color = "";
+      }
+      if (this.tr3) {
+        this.tr3.style.color = "";
+      }
       this.upute.style.color = "";
     },
     async pokaziTrening2() {
@@ -522,8 +529,10 @@ export default {
       this.uputeKliknut = false;
       this.tr2.style.color = "gray";
       this.tr1.style.color = "";
-      this.tr3.style.color = "";
-      this.upute.style.color = "";
+      if (this.tr3) {
+        this.tr3.style.color = "";
+      }
+      this.upute.style.color = ""; // Ode se dogada GRESKA, ovo se uopce ne promjeni pri klikom na trening
     },
     async pokaziTrening3() {
       this.trening1Kliknut = false;
@@ -541,7 +550,7 @@ export default {
       this.trening3Kliknut = false;
       this.uputeKliknut = true;
       this.upute.style.color = "gray";
-      this.tr1.style.color = "";
+      this.tr1.style.color = ""; // OVO RADI i ovo se promjeni
       this.tr2.style.color = "";
       this.tr3.style.color = "";
     },
