@@ -5,7 +5,7 @@
     </div>
     <div class="row justify-content-center">
       <div class="col-12">
-        <h2 class="pitanje1">
+        <h2 class="pitanje2">
           2. Koji dio tijela bi htio znatno više unaprijediti?
         </h2>
       </div>
@@ -22,38 +22,38 @@
     </div>
     <div class="row justify-content-center">
       <div class="col-12">
-        <h2 class="pitanje2" v-if="odgovori.prviOdgovor === 'U teretani'">
+        <h2 class="pitanje3" v-if="odgovori.prviOdgovor === 'U teretani'">
           3. Koliko puta tjedno bi htio trenirati? (preporučeno 3 ili 4)
         </h2>
-        <h2 class="pitanje2" v-if="odgovori.prviOdgovor === 'Kod kuće'">
+        <h2 class="pitanje3" v-if="odgovori.prviOdgovor === 'Kod kuće'">
           3. Koliko puta tjedno bi htio trenirati?
         </h2>
       </div>
       <div v-if="odgovori.prviOdgovor === 'U teretani'">
         <div class="row justify-content-center">
-        <div class="col-4">
-          <button class="my-button2" style="margin-left: 15vw">2</button>
-        </div>
-        <div class="col-4">
-          <button class="my-button2">3</button>
-        </div>
-        <div class="col-4">
-          <button class="my-button2" style="margin-right: 15vw">4</button>
+          <div class="col-4">
+            <button class="my-button2" style="margin-left: 15vw">2</button>
+          </div>
+          <div class="col-4">
+            <button class="my-button2">3</button>
+          </div>
+          <div class="col-4">
+            <button class="my-button2" style="margin-right: 15vw">4</button>
+          </div>
         </div>
       </div>
-      </div>
-      <div v-if= "odgovori.prviOdgovor === 'Kod kuće'">
+      <div v-if="odgovori.prviOdgovor === 'Kod kuće'">
         <div class="row justify-content-center">
-        <div class="col-4">
-          <button class="my-button2" style="margin-left: 15vw">3</button>
+          <div class="col-4">
+            <button class="my-button2" style="margin-left: 15vw">3</button>
+          </div>
+          <div class="col-4">
+            <button class="my-button2">4</button>
+          </div>
+          <div class="col-4">
+            <button class="my-button2" style="margin-right: 15vw">5</button>
+          </div>
         </div>
-        <div class="col-4">
-          <button class="my-button2">4</button>
-        </div>
-        <div class="col-4">
-          <button class="my-button2" style="margin-right: 15vw">5</button>
-        </div>
-      </div>
       </div>
     </div>
     <button @click="isanswered" id="dalje">Nastavi</button>
@@ -62,7 +62,7 @@
 
 <script>
 import axios from "axios";
-
+import router from '../router/index'
 import { odgovori } from "../views/Pitanja.vue"
 
 export default {
@@ -75,6 +75,17 @@ export default {
   },
 
   mounted() {
+    if (router.currentRoute.value.path !== 'Pitanja2'){
+      document.querySelectorAll(".my-button1").forEach((b) => {
+        b.style.backgroundColor = "#2DA6E8";
+        b.style.color = "black";
+      });
+      document.querySelectorAll(".my-button2").forEach((b) => {
+        b.style.backgroundColor = "#2DA6E8";
+        b.style.color = "black";
+      });
+    }
+
     console.log(this.odgovori);
 
     document.querySelectorAll(".my-button1").forEach((button) => {
@@ -173,12 +184,12 @@ export default {
   padding: 1.5vw 2.4vw;
 }
 
-.pitanje1 {
+.pitanje2 {
   font-size: 3vw;
   margin-bottom: 2vw;
 }
 
-.pitanje2 {
+.pitanje3 {
   font-size: 3vw;
   margin-top: 5vw;
   margin-bottom: 2vw;
@@ -189,11 +200,11 @@ export default {
     overflow: hidden;
   }
 
-  .pitanje1 {
+  .pitanje2 {
     font-size: 6vw;
   }
 
-  .pitanje2 {
+  .pitanje3 {
     font-size: 6vw;
   }
 
@@ -216,4 +227,5 @@ export default {
     border-radius: 3vw;
     padding: 3.8vw 5.7vw;
   }
-}</style>
+}
+</style>

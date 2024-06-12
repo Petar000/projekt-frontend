@@ -181,7 +181,7 @@
             Pauza između svake serije je između 1.5 i 2.5 minute - nije strogo
             određena. Za svaku vježbu ukoliko izlazi van zadanog broja ponavljanja dodati opterećenje pomoću bučica. 
             Cilj je svaki tjedan progresivno povećavati broj ponavljanja na vježbama u zadanom rasponu 
-            ili dodavanje opterećenja s utezima.
+            ili dodavati opterećenje s utezima.
           </p>
           <h2>Što je RPE?</h2>
           <p class="upute-tekst">
