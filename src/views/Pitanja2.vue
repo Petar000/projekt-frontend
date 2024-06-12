@@ -22,8 +22,11 @@
     </div>
     <div class="row justify-content-center">
       <div class="col-12">
-        <h2 class="pitanje2">
+        <h2 class="pitanje2" v-if="odgovori.prviOdgovor === 'U teretani'">
           3. Koliko puta tjedno bi htio trenirati? (preporučeno 3 ili 4)
+        </h2>
+        <h2 class="pitanje2" v-if="odgovori.prviOdgovor === 'Kod kuće'">
+          3. Koliko puta tjedno bi htio trenirati?
         </h2>
       </div>
       <div v-if="odgovori.prviOdgovor === 'U teretani'">

@@ -53,6 +53,8 @@ export default {
       switch (routeName) {
         case 'Pitanja':
           return 'slide';
+        case 'Pitanja2':
+          return 'slide';
         case 'Savjeti':
           return 'slide';
         case 'Trening':

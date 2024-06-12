@@ -137,7 +137,7 @@
           </div>
         </div>
       </div>
-      <div v-if="uputeKliknut">
+      <div v-if="(uputeKliknut) && (odgovori.prviOdgovor === 'U teretani')">
         <div class="stranica-uputa">
           <h1>Upute za trening</h1>
           <p class="upute-tekst">
@@ -172,6 +172,27 @@
               slijedi odgovarajuća pauza.
             </p>
           </div>
+        </div>
+      </div>
+      <div v-if="(uputeKliknut) && (odgovori.prviOdgovor === 'Kod kuće')">
+        <div class="stranica-uputa">
+          <h1>Upute za trening</h1>
+          <p class="upute-tekst">
+            Pauza između svake serije je između 1.5 i 2.5 minute - nije strogo
+            određena. Za svaku vježbu ukoliko izlazi van zadanog broja ponavljanja dodati opterećenje pomoću bučica. 
+            Cilj je svaki tjedan progresivno povećavati broj ponavljanja na vježbama u zadanom rasponu 
+            ili dodavanje opterećenja s utezima.
+          </p>
+          <h2>Što je RPE?</h2>
+          <p class="upute-tekst">
+            RPE skala (Rate of Perceived Exertion) označava skalu od 1-10 kojom
+            ocjenjujemo težinu svake serije tako da procjenimo koliko smo još
+            ponavljanja mogli napraviti u njoj prije nego bi ostali bez snage.
+            Broj ponavljanja u rezervi oduzimamo od broja 10 kako bi dobili
+            vrijednost skale. Na primjer ako bi odradili seriju čućnja i
+            napravili 10 ponavljanja, a mogli bi maksimalno napraviti 12, onda tu
+            seriju ocjenjujemo s RPE 8.
+          </p>
         </div>
       </div>
     </div>
@@ -517,10 +538,12 @@ export default {
     async pokaziUpute() {
       this.trening1Kliknut = false;
       this.trening2Kliknut = false;
+      this.trening3Kliknut = false;
       this.uputeKliknut = true;
       this.upute.style.color = "gray";
       this.tr1.style.color = "";
       this.tr2.style.color = "";
+      this.tr3.style.color = "";
     },
 
     idiNaHome() {
